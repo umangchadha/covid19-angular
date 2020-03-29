@@ -1,5 +1,5 @@
 # Demo 
-https://zzmivlblr.github.stackblitz.io/
+http://covid-19-status.surge.sh/
 
 # Covid19
 
