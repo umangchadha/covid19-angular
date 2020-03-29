@@ -14,6 +14,7 @@ export class AppComponent implements OnInit {
   title = 'covid';
   masterData: any = {};
   india = {};
+  statewiseData: any = {};
 
   constructor(private httpClient: HttpClient) { }
 
@@ -39,8 +40,16 @@ export class AppComponent implements OnInit {
       this.masterData.countries_stat = _.orderBy(this.masterData.countries_stat, (obj) => {
         return parseInt(obj.rhid, 10);
       }, 'cases', 'desc');
-      this.india = _.filter(this.masterData.countries_stat, a => a.country_name === 'India');
+
     });
+    this.httpClient.get('https://api.covid19india.org/data.json')
+      .subscribe((a: any) => {
+        this.statewiseData = a.statewise;
+        this.india = _.filter(this.statewiseData, a => a.state === 'Total')
+      });
+
+
+
   }
 
   classFinder(country) {
