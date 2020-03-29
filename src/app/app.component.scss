@@ -1,0 +1,38 @@
+.card {
+  background-color: #eefe;
+  margin: 5px;
+  position: relative;
+  padding: 10px
+}
+
+
+.flag-icon {
+  position: absolute;
+  z-index: 0;
+  width: 70px;
+  height: 70px;
+  right: 0;
+  opacity: 0.5;
+}
+
+.card-content {
+  z-index: 1;
+  position: relative;
+
+  &.india {
+    height: 70px;
+  }
+}
+
+.warn {
+  color: red;
+}
+
+.recovered {
+  color: green;
+}
+
+code {
+  font-weight: bold;
+  font-size: large;
+}

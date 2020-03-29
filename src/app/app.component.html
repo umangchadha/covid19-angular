@@ -1,0 +1,29 @@
+<div> Last updated : {{masterData.statistic_taken_at }} </div>
+
+<div fxLayout="row wrap">
+
+  <div class="card"
+    fxFlex="94">
+    <span [className]="classFinder(india[0]?.country_name)"> </span>
+    <div class="card-content india"
+      fxLayout="row wrap">
+      <code fxFlex=100>{{india[0]?.country_name}} </code>
+      <div fxFlex=31>Total Cases : {{india[0]?.cases}}</div>
+      <div fxFlex=31
+        class="warn">Deaths : {{india[0]?.deaths}}</div>
+      <div fxFlex=31
+        class="recovered">Recovered : {{india[0]?.total_recovered}}</div>
+    </div>
+  </div>
+  <div class="card"
+    fxFlex="31"
+    *ngFor="let country of masterData.countries_stat">
+    <span [className]="classFinder(country?.country_name)"></span>
+    <div class="card-content">
+      <code>{{country.country_name}} </code>
+      <div>Total Cases : {{country.cases}}</div>
+      <div class="warn">Deaths : {{country.deaths}}</div>
+      <div class="recovered">Recovered : {{country.total_recovered}}</div>
+    </div>
+  </div>
+</div>
