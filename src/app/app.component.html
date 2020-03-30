@@ -11,15 +11,16 @@
         <code fxFlex=100>INDIA</code>
 
         <div fxFlex=31
-          class="new-cases">Cases : {{india[0]?.active}}</div>
+          class="new-cases">Cases : {{india[0]?.confirmed}}</div>
         <div fxFlex=31
           class="warn">Deaths : {{india[0]?.deaths}}</div>
         <div fxFlex=31
-          class="recovered">Recovered : {{india[0]?.confirmed}}</div>
+          class="recovered">Recovered : {{india[0]?.recovered}}</div>
       </div>
     </div>
 
-    <div class="marquee"
+    <div ngClass.lt-md="nomarquee"
+      class="marquee"
       fxLayout="column"
       fxLayoutGap="30px">
       <div *ngFor="let state of statewiseData">
@@ -31,8 +32,8 @@
           <span fxFlex
             class="state-data"
             fxLayout="column">
-            <span> Active: <span class="new-cases">{{state.active}}</span> </span>
             <span> Confirmed: <span class="new-cases">{{state.confirmed}}</span></span>
+            <span> Active: <span class="new-cases">{{state.active}}</span> </span>
             <span> Deaths: <span class="warn">{{state.deaths}}</span></span>
             <span> Recovered: <span class="recovered">{{state.recovered}}</span></span>
           </span>
