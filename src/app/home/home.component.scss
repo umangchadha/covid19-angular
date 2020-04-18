@@ -1,0 +1,31 @@
+.parent{
+    height: 90vh;
+
+    position: relative;
+}
+.card{
+    margin:2px;
+}
+.home{
+    display: flex;
+    
+    align-items: center;
+    justify-content: center;
+    left: 0px;
+    right: 0px;
+    top:0px;
+    bottom: 0px;
+    margin: auto;
+    position: absolute;
+}
+.home1{
+    display: flex;
+    margin-top: 3rem;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.stats{
+    color: white;
+}

@@ -1,0 +1,66 @@
+.container {
+
+    .graph {
+      font: 1em 'Segoe UI', Tahoma, Helvetica, Sans-Serif;
+      position: relative;
+      margin-bottom: 80px;
+  
+    }
+  
+    .stats-cards {
+  
+      .card {
+        background-color: rgba(255, 255, 255, 1);
+        margin: 5px;
+        position: relative;
+        padding: 10px
+      }
+  
+  
+      .flag-icon {
+        position: absolute;
+        z-index: 0;
+        width: 30px;
+        height: 30px;
+        left: 0;
+        opacity: 0.5;
+      }
+  
+      .card-content {
+        z-index: 1;
+        position: relative;
+        padding-left: 30px;
+        font-size: 12px;
+  
+        &.india {
+          height: 70px;
+  
+          * {
+            font-weight: bold;
+          }
+        }
+      }
+  
+    }
+  }
+  
+  
+  
+  .warn {
+    color: red;
+  }
+  
+  .new-cases {
+    font-weight: bold;
+  }
+  
+  .recovered {
+    color: green;
+  }
+  
+  
+  code {
+    font-weight: bold;
+    font-size: large;
+  }
+  
