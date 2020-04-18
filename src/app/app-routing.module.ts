@@ -8,9 +8,7 @@ const routes: Routes = [
   {path:"",component:HomeComponent},
   {path:"World",component:WorldComponent},
   {path:"India",component:IndiaComponent},
-  
-
-  
+  {path:"Home",component:HomeComponent},
 
 ];
 
