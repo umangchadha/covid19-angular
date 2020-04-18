@@ -1,21 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-
-import { COUNTRIES } from './countries';
 import * as _ from 'lodash';
-@Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
-})
 
-export class AppComponent implements OnInit {
+import { COUNTRIES } from '../countries';
+@Component({
+  selector: 'app-world',
+  templateUrl: './world.component.html',
+  styleUrls: ['./world.component.scss']
+})
+export class WorldComponent implements OnInit {
   title = 'covid';
   masterData: any = {};
-  india = {};
-  statewiseData: any = {};
-
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
@@ -42,20 +37,14 @@ export class AppComponent implements OnInit {
       }, 'cases', 'desc');
 
     });
-    this.httpClient.get('https://api.covid19india.org/data.json')
-      .subscribe((a: any) => {
-        this.statewiseData = a.statewise;
-        this.india = _.filter(this.statewiseData, a => a.state === 'Total')
-      });
-
-
-
+    
   }
-
   classFinder(country) {
     const ctry = _.filter(COUNTRIES, a => a.name === country);
     if (ctry && ctry[0]) {
       return 'flag-icon flag-icon-' + (ctry[0].code).toLowerCase();
     }
   }
+
+
 }

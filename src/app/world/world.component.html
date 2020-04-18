@@ -1,0 +1,27 @@
+
+
+<div class="container"
+  fxLayout="column">
+<a routerLink="/India" routerLinkActive="active">India</a>
+
+  
+  <div 
+    class="stats-cards">
+
+
+    <div fxLayout="row wrap">
+
+      <div class="card"
+        fxFlex="45"
+        *ngFor="let country of masterData.countries_stat">
+        <span [className]="classFinder(country?.country_name)"></span>
+        <div class="card-content">
+          <code>{{country.country_name}} </code>
+          <div class="new-cases">Cases : {{country.cases}}</div>
+          <div class="warn">Deaths : {{country.deaths}}</div>
+          <div class="recovered">Recovered : {{country.total_recovered}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

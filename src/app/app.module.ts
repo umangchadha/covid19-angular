@@ -5,11 +5,17 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { WorldComponent } from './world/world.component';
+import { IndiaComponent } from './india/india.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    WorldComponent,
+    IndiaComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

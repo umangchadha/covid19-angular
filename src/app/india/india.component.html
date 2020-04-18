@@ -1,0 +1,46 @@
+<div>
+
+
+</div>
+<div class="container">
+    <a routerLink="/World" routerLinkActive="active">See World Stats</a>
+  <div class="graph"
+    >
+    <div class="card india">
+      <span class="flag-icon flag-icon-in"> </span>
+      <div> Last updated : {{india[0]?.lastupdatedtime}} </div>
+      <div class="card-content india"
+        fxLayout="row wrap">
+        <code fxFlex=100>INDIA</code>
+
+        <div fxFlex=31
+          class="new-cases">Cases : {{india[0]?.confirmed}}</div>
+        <div fxFlex=31
+          class="warn">Deaths : {{india[0]?.deaths}}</div>
+        <div fxFlex=31
+          class="recovered">Recovered : {{india[0]?.recovered}}</div>
+      </div>
+    </div>
+
+    <div ngClass.lt-md="nomarquee"
+      class="marquee"
+      fxLayout="column"
+      fxLayoutGap="30px">
+      <div *ngFor="let state of statewiseData">
+        <div *ngIf="state.state!=='Total'"
+          fxLayout
+          fxLayoutAlign="space-between">
+          <span fxFlex
+            class="state">{{state.state}}</span>
+          <span fxFlex
+            class="state-data"
+            fxLayout="column">
+            <span> Confirmed: <span class="new-cases">{{state.confirmed}}</span></span>
+            <span> Active: <span class="new-cases">{{state.active}}</span> </span>
+            <span> Deaths: <span class="warn">{{state.deaths}}</span></span>
+            <span> Recovered: <span class="recovered">{{state.recovered}}</span></span>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
