@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { WorldComponent } from './world/world.component';
 import { IndiaComponent } from './india/india.component';
 import { HomeComponent } from './home/home.component';
-
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -21,9 +21,11 @@ import { HomeComponent } from './home/home.component';
     BrowserModule,
     AppRoutingModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+  
+  
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
