@@ -8,8 +8,10 @@ import { AppComponent } from './app.component';
 import { WorldComponent } from './world/world.component';
 import { IndiaComponent } from './india/india.component';
 import { HomeComponent } from './home/home.component';
-
-
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { MessageService } from './message.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './material-module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,9 +23,14 @@ import { HomeComponent } from './home/home.component';
     BrowserModule,
     AppRoutingModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    MaterialModule,
+    BrowserAnimationsModule
+    
+  
+  
   ],
-  providers: [],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

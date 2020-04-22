@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import {COUNTRIES} from '../countries';
 import * as _ from 'lodash';
+import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-india',
@@ -15,7 +15,7 @@ export class IndiaComponent implements OnInit {
   india = {};
   statewiseData: any;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, public message:MessageService) { }
 
   ngOnInit() {
     this.getData();
@@ -28,10 +28,12 @@ export class IndiaComponent implements OnInit {
 
 
   getData() {
+    this.message.spinner=true;
     this.httpClient.get('https://api.covid19india.org/data.json')
       .subscribe((a: any) => {
         this.statewiseData = a.statewise;
         this.india = _.filter(this.statewiseData, a => a.state === 'Total')
       });
+      this.message.spinner=false; 
     }
 }
