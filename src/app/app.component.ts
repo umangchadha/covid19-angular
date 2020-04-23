@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-
 import { COUNTRIES } from './countries';
 import * as _ from 'lodash';
+import {ThemePalette} from '@angular/material/core';
+import {ProgressSpinnerMode} from '@angular/material/progress-spinner';
+import { MessageService } from './message.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -15,8 +16,11 @@ export class AppComponent implements OnInit {
   masterData: any = {};
   india = {};
   statewiseData: any = {};
+  color: ThemePalette = 'primary';
+  mode: ProgressSpinnerMode = 'determinate';
+  value = 50;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient, public messageService:MessageService) { }
 
   ngOnInit() {
     this.getData();
