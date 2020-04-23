@@ -9,9 +9,11 @@ import { WorldComponent } from './world/world.component';
 import { IndiaComponent } from './india/india.component';
 import { HomeComponent } from './home/home.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+
 import { MessageService } from './message.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material-module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +33,12 @@ import { MaterialModule } from './material-module';
   
   ],
   providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},MessageService],
+
+  
+  
+  ],
+  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
