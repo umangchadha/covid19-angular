@@ -25,12 +25,8 @@ jobs:
         run: |
           npm i
           npm run build:prod
-      - name: Push Build to Surge
+      - name: Push Build to Releases
         uses: ncipollo/release-action@v1
         with:
           artifacts: "dist/angular-githubaction/*"
-          domain: 'covid-19-status.surge.sh'
-          project: './src/dist/covid19'
-          login: ${{ umangchadha@gmail.com }}
-          token: ${{ 86e60ee0097f84c9f2954ed965b62ef8 }}
-        
+          token: ${{ secrets.TOKEN }}
