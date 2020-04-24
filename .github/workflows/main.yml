@@ -25,11 +25,6 @@ jobs:
         run: |
           npm i
           npm run build:prod
-      - name: Push Build to Releases
-        uses: ncipollo/release-action@v1
-        with:
-          artifacts: "dist/covid19/*"
-          token: ${{ secrets.TOKEN }}
       - name: Deploy to covid-19-status.surge.sh
         uses: dswistowski/surge-sh-action@v1
         with:
