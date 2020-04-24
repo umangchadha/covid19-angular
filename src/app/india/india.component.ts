@@ -15,7 +15,7 @@ export class IndiaComponent implements OnInit {
   india = {};
   statewiseData: any;
 
-  constructor(private httpClient: HttpClient, public message:MessageService) { }
+  constructor(private httpClient: HttpClient, public message: MessageService) { }
 
   ngOnInit() {
     this.getData();
@@ -28,12 +28,12 @@ export class IndiaComponent implements OnInit {
 
 
   getData() {
-    this.message.spinner=true;
+    this.message.spinner = true;
     this.httpClient.get('https://api.covid19india.org/data.json')
       .subscribe((a: any) => {
         this.statewiseData = a.statewise;
-        this.india = _.filter(this.statewiseData, a => a.state === 'Total')
+        this.india = _.filter(this.statewiseData, (b: any) => b.state === 'Total')
       });
-      this.message.spinner=false; 
-    }
+    this.message.spinner = false;
+  }
 }
