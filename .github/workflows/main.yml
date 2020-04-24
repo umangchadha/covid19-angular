@@ -30,3 +30,6 @@ jobs:
         with:
           artifacts: "dist/covid19/*"
           token: ${{ secrets.TOKEN }}
+      - name: Install surge and fire deployment
+          run: npm install -g surge
+          run: surge ./ ${{ secrets.SURGE_DOMAIN }} --token ${{ secrets.SURGE_TOKEN }}
