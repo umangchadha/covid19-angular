@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import * as _ from 'lodash';
-import {MessageService} from '../message.service';
-
+import { MessageService } from '../message.service';
 import { COUNTRIES } from '../countries';
-import { from } from 'rxjs';
+import * as _ from 'lodash';
+
 @Component({
   selector: 'app-world',
   templateUrl: './world.component.html',
@@ -12,16 +11,13 @@ import { from } from 'rxjs';
 
 })
 
-export class WorldComponent implements OnInit {
+export class WorldComponent implements OnChanges {
   title = 'covid';
   masterData: any = {};
+  show: any = false;
+  constructor(private httpClient: HttpClient, public messageService: MessageService) { this.getData(); }
 
-  constructor(private httpClient: HttpClient,public messageService:MessageService) { }
-  
-  ngOnInit() {
-
-    this.getData();
-
+  ngOnChanges() {
     setInterval(() => {
       this.getData();
     }, 10000); // 10 sec interval
@@ -29,7 +25,7 @@ export class WorldComponent implements OnInit {
   }
 
   getData() {
-    this.messageService.spinner=true;
+    this.messageService.spinner = true;
     const httpOptions = {
       headers: new HttpHeaders({
         'x-rapidapi-host': 'coronavirus-monitor.p.rapidapi.com',
@@ -42,9 +38,9 @@ export class WorldComponent implements OnInit {
       this.masterData.countries_stat = _.orderBy(this.masterData.countries_stat, (obj) => {
         return parseInt(obj.rhid, 10);
       }, 'cases', 'desc');
-      this.messageService.spinner=false;
+      this.messageService.spinner = false;
     });
-    
+
   }
   classFinder(country) {
     const ctry = _.filter(COUNTRIES, a => a.name === country);
@@ -52,6 +48,8 @@ export class WorldComponent implements OnInit {
       return 'flag-icon flag-icon-' + (ctry[0].code).toLowerCase();
     }
   }
-
+  showHide(country) {
+    this.show = country ? true : false;
+  }
 
 }

@@ -30,6 +30,14 @@ import { MaterialModule } from './material-module';
     BrowserAnimationsModule
 
   ],
+  exports: [
+    BrowserModule,
+    AppRoutingModule,
+    FlexLayoutModule,
+    HttpClientModule,
+    MaterialModule,
+    BrowserAnimationsModule
+  ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, MessageService],
 
   bootstrap: [AppComponent]

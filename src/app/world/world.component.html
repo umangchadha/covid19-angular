@@ -1,17 +1,17 @@
-<div class="container"
-  >
-<a class="link_color" routerLink="/India" routerLinkActive="active">See India Stats</a>
-<a class="link_color" routerLink="/Home" routerLinkActive="active"><button class="btn"><i class="fa fa-home"></i></button></a>
-  
-  <div 
-    class="stats-cards">
+<div class="container">
+  <a class="link_color"
+    routerLink="/India"
+    routerLinkActive="active">See India Stats</a>
+  <a class="link_color"
+    routerLink="/Home"
+    routerLinkActive="active"><button class="btn"><i class="fa fa-home"></i></button></a>
 
-
+  <div class="stats-cards">
     <div fxLayout="row wrap">
-
       <div class="card"
-        fxFlex="45"
-        *ngFor="let country of masterData.countries_stat">
+        fxFlex="30"
+        *ngFor="let country of masterData.countries_stat"
+        [style.display]="country?.country_name?'flex':'none'">
         <span [className]="classFinder(country?.country_name)"></span>
         <div class="card-content">
           <code>{{country.country_name}} </code>
