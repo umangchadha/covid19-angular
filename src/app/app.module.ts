@@ -28,16 +28,9 @@ import { MaterialModule } from './material-module';
     HttpClientModule,
     MaterialModule,
     BrowserAnimationsModule
-    
-  
-  
-  ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},MessageService],
 
-  
-  
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, MessageService],
 
   bootstrap: [AppComponent]
 })
