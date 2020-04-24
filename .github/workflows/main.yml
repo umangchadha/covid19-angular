@@ -30,7 +30,7 @@ jobs:
         with:
           artifacts: "dist/covid19/*"
           token: ${{ secrets.TOKEN }}
-      - name: Deploy to foo-bar.surge.sh
+      - name: Deploy to covid-19-status.surge.sh
         uses: dswistowski/surge-sh-action@v1
         with:
           domain: 'covid-19-status.surge.sh'
