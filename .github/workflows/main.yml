@@ -29,6 +29,6 @@ jobs:
         uses: dswistowski/surge-sh-action@v1
         with:
           domain: 'covid-19-status.surge.sh'
-          project: '.'
+          project: 'dist/covid19/'
           login: ${{ secrets.SURGE_DOMAIN }}
           token: ${{ secrets.SURGE_TOKEN }}
