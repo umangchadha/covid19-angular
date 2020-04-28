@@ -1,10 +1,12 @@
-
 <div class="container">
-    <a class="link_color" routerLink="/World" routerLinkActive="active">See World Stats</a>
-    <a class="link_color" routerLink="/Home" routerLinkActive="active"><button class="btn"><i class="fa fa-home"></i></button></a>
+  <a class="link_color"
+    routerLink="/World"
+    routerLinkActive="active">See World Stats</a>
+  <a class="link_color"
+    routerLink="/Home"
+    routerLinkActive="active"><button class="btn"><i class="fa fa-home"></i></button></a>
 
-  <div class="graph"
-    >
+  <div class="graph">
     <div class="card india">
       <span class="flag-icon flag-icon-in"> </span>
       <div> Last updated : {{india[0]?.lastupdatedtime}} </div>
@@ -30,8 +32,9 @@
           fxLayout
           fxLayoutAlign="space-between">
           <span fxFlex
-            class="state">{{state.state}}></span>
-            <ngx-charts-bar-vertical
+            class="state">{{state.state}}</span>
+          {{createGraphData(state.statecode)}}
+          <!-- <ngx-charts-bar-vertical
               [view]="view"
               [scheme]="colorScheme"
               [results]="single"
@@ -44,12 +47,11 @@
               [xAxisLabel]="xAxisLabel"
               [yAxisLabel]="yAxisLabel"
               >
-              </ngx-charts-bar-vertical>
+              </ngx-charts-bar-vertical> -->
           <span fxFlex
             class="state-data"
             fxLayout="column">
             <span> Confirmed: <span class="new-cases">{{state.confirmed}}</span></span>
-            <span> Active: <span class="new-cases">{{state.active}}</span> </span>
             <span> Deaths: <span class="warn">{{state.deaths}}</span></span>
             <span> Recovered: <span class="recovered">{{state.recovered}}</span></span>
           </span>

@@ -58,7 +58,7 @@ export class IndiaComponent implements OnInit {
       "value": 204617
     }
   ];
-  
+
   public multi = [
     {
       "name": "China",
@@ -73,7 +73,7 @@ export class IndiaComponent implements OnInit {
         }
       ]
     },
-  
+
     {
       "name": "USA",
       "series": [
@@ -87,7 +87,7 @@ export class IndiaComponent implements OnInit {
         }
       ]
     },
-  
+
     {
       "name": "Norway",
       "series": [
@@ -101,7 +101,7 @@ export class IndiaComponent implements OnInit {
         }
       ]
     },
-  
+
     {
       "name": "Japan",
       "series": [
@@ -115,7 +115,7 @@ export class IndiaComponent implements OnInit {
         }
       ]
     },
-  
+
     {
       "name": "Germany",
       "series": [
@@ -129,7 +129,7 @@ export class IndiaComponent implements OnInit {
         }
       ]
     },
-  
+
     {
       "name": "France",
       "series": [
@@ -144,7 +144,7 @@ export class IndiaComponent implements OnInit {
       ]
     }
   ];
-  
+
 
   constructor(private httpClient: HttpClient, public message: MessageService) { }
 
@@ -154,24 +154,80 @@ export class IndiaComponent implements OnInit {
     setInterval(() => {
       this.getData();
     }, 10000); // 10 sec interval
-
   }
-
 
   getData() {
     this.message.spinner = true;
     this.httpClient.get('https://api.covid19india.org/data.json')
       .subscribe((a: any) => {
         this.statewiseData = a.statewise;
-        console.log(this.statewiseData)
-        this.india = _.filter(this.statewiseData, (b: any) => b.state === 'Total')
-        console.log(this.india)
+        this.india = _.filter(this.statewiseData, (b: any) => b.state === 'Total');
+        this.getStateData();
       });
-      this.httpClient.get('https://api.covid19india.org/states_daily.json')
-      .subscribe((a: any) => {
-        this.timeSeries= a
-        console.log(a);
-      });
+
     this.message.spinner = false;
+  }
+
+  getStateData() {
+    this.httpClient.get('https://api.covid19india.org/states_daily.json')
+      .subscribe((a: any) => {
+        this.timeSeries = a;
+      });
+  }
+
+  createGraphData(stateCode) {
+    if (this.timeSeries) {
+      let seriesArr = [];
+
+      this.timeSeries.states_daily.map(a => {
+        if (a.status === 'Confirmed') {
+          const x = {
+            date: a.date,
+            confirmed: a.stateCode,
+          };
+          seriesArr.push(x);
+        }
+        if (a.status === 'Recovered') {
+          const x = {
+            date: a.date,
+            recovered: a.stateCode
+          };
+          seriesArr.push(x);
+        }
+        if (a.status === 'Deceased') {
+          const x = {
+            date: a.date,
+            deceased: a.stateCode
+          };
+          seriesArr.push(x);
+        }
+      });
+
+      const uniqDates = _.uniq(seriesArr.map(a => a.date));
+
+      const sA = uniqDates.map(a => {
+        const y: any = {};
+        seriesArr.filter(b => {
+          y.date = b.date;
+          if (b.date === a && b.confirmed) {
+            y.confirmed = b.confirmed;
+          }
+          if (b.date === a && b.deceased) {
+            y.deceased = b.deceased;
+          }
+          if (b.date === a && b.recovered) {
+            y.recovered = b.recovered;
+          }
+        });
+
+        return y;
+      });
+      seriesArr = sA;
+      const obj = [{
+        name: stateCode,
+        series: seriesArr
+      }];
+      console.log(obj);
+    }
   }
 }
