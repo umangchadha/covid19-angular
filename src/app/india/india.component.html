@@ -33,20 +33,9 @@
           fxLayoutAlign="space-between">
           <span fxFlex
             class="state">{{state.state}}</span>
+          <button mat-raised-button
+            (click)="openDialog(state.statecode,state.state)">Graph</button>
 
-          <ngx-charts-line-chart [view]="view"
-            [scheme]="colorScheme"
-            legend=true
-            tooltipDisabled=true
-            [showXAxisLabel]="showXAxisLabel"
-            [showYAxisLabel]="showYAxisLabel"
-            [showGridLines]='showGridLines'
-            [xAxis]="xAxis"
-            [yAxis]="yAxis"
-            [xAxisLabel]="xAxisLabel"
-            [yAxisLabel]="yAxisLabel"
-            [results]="createGraphData(state.statecode.toLowerCase())">
-          </ngx-charts-line-chart>
           <span fxFlex
             class="state-data"
             fxLayout="column">

@@ -6,7 +6,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WorldComponent } from './world/world.component';
-import { IndiaComponent } from './india/india.component';
+import { IndiaComponent, DialogOverviewDialogComponent } from './india/india.component';
 import { HomeComponent } from './home/home.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
@@ -20,7 +20,9 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     AppComponent,
     WorldComponent,
     IndiaComponent,
-    HomeComponent
+    HomeComponent,
+    DialogOverviewDialogComponent
+
   ],
   imports: [
     BrowserModule,
@@ -38,10 +40,12 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     FlexLayoutModule,
     HttpClientModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxChartsModule
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, MessageService],
 
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogOverviewDialogComponent]
 })
 export class AppModule { }
