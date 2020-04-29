@@ -14,7 +14,7 @@ export class IndiaComponent implements OnInit {
   masterData: any = {};
   india = {};
   statewiseData: any;
-  view: any[] = [600, 300];
+  view: any[] = [300, 150];
   timeSeries: any;
 
 
