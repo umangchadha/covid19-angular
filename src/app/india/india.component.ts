@@ -23,7 +23,6 @@ export class IndiaComponent implements OnInit {
     setInterval(() => {
       this.getData();
     }, 10000); // 10 sec interval
-
   }
 
 
