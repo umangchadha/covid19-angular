@@ -6,20 +6,23 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WorldComponent } from './world/world.component';
-import { IndiaComponent } from './india/india.component';
+import { IndiaComponent, DialogOverviewDialogComponent } from './india/india.component';
 import { HomeComponent } from './home/home.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { MessageService } from './message.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material-module';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
     AppComponent,
     WorldComponent,
     IndiaComponent,
-    HomeComponent
+    HomeComponent,
+    DialogOverviewDialogComponent
+
   ],
   imports: [
     BrowserModule,
@@ -27,7 +30,8 @@ import { MaterialModule } from './material-module';
     FlexLayoutModule,
     HttpClientModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxChartsModule
 
   ],
   exports: [
@@ -36,10 +40,12 @@ import { MaterialModule } from './material-module';
     FlexLayoutModule,
     HttpClientModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxChartsModule
   ],
   providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, MessageService],
 
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogOverviewDialogComponent]
 })
 export class AppModule { }
