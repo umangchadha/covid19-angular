@@ -6,22 +6,36 @@
   >
     <mat-icon>close</mat-icon>
   </button>
-  <h1>{{data.stateName}}</h1>
+  <div fxLayout="column">
+    <h1 fxFlex="10">{{data.stateName}}
+      <div
+        style="font-size: 13px; line-height: 14px;"
+        fxLayout="column"
+      >
 
-  <ngx-charts-line-chart
-    style="display: flex;"
-    fxFlexFill
-    [scheme]="colorScheme"
-    legend=true
-    showXAxisLabel=true
-    showYAxisLabel=true
-    yAxis=true
-    autoScale=true
-    xAxis=true
-    animation=true
-    [xAxisLabel]="xAxisLabel"
-    [yAxisLabel]="yAxisLabel"
-    [results]="data?.allData"
-  >
-  </ngx-charts-line-chart>
+        <span> Confirmed: <span style="font-weight: bold;">{{data.stateInfo.confirmed}}</span></span>
+        <span> Deaths: <span style="color:red">{{data.stateInfo.deaths}}</span></span>
+        <span> Recovered: <span style="color:green">{{data.stateInfo.recovered}}</span></span>
+      </div>
+    </h1>
+    <ngx-charts-line-chart
+      fxFlex="200px"
+      fxFlex.lt-md="150px"
+      fxFlexFill
+      [scheme]="colorScheme"
+      legend=true
+      legendPosition=below
+      legendPosition.gt-md=right
+      showXAxisLabel.gt-md=true
+      showYAxisLabel.gt-md=true
+      yAxis=true
+      xAxis=true
+      autoScale
+      animation=true
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      [results]="data?.allData"
+    >
+    </ngx-charts-line-chart>
+  </div>
 </div>

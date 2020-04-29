@@ -30,19 +30,7 @@ export class IndiaComponent implements OnInit {
     }, 10000); // 10 sec interval
   }
 
-  openDialog(obj, state): void {
 
-    const dialogRef = this.dialog.open(DialogOverviewDialogComponent, {
-      width: '100%',
-      height: '50%',
-      data: { allData: obj, stateName: state.state }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-    });
-
-  }
   getData() {
     this.message.spinner = true;
     this.httpClient.get('https://api.covid19india.org/data.json')
@@ -108,7 +96,19 @@ export class IndiaComponent implements OnInit {
       this.message.spinner = false;
     }
   }
+  openDialog(obj, state): void {
 
+    const dialogRef = this.dialog.open(DialogOverviewDialogComponent, {
+      width: '100%',
+      height: '45%',
+      data: { allData: obj, stateName: state.state, stateInfo: state }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+
+  }
 
 }
 
@@ -119,7 +119,6 @@ export class IndiaComponent implements OnInit {
 export class DialogOverviewDialogComponent {
 
   // options
-  view = ['100%', '100%']
   showLabels = false;
   showGridLines = false;
   xAxis = true;
