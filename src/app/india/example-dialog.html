@@ -1,21 +1,27 @@
 <div style="position: relative;">
-  <button mat-mini-fab
+  <button
+    mat-mini-fab
     style="position: absolute;right: 0;top:-10px;"
-    (click)="onNoClick()">
+    (click)="onNoClick()"
+  >
     <mat-icon>close</mat-icon>
   </button>
   <h1>{{data.stateName}}</h1>
 
-  <ngx-charts-line-chart [scheme]="colorScheme"
-    view
+  <ngx-charts-line-chart
+    style="display: flex;"
+    fxFlexFill
+    [scheme]="colorScheme"
     legend=true
-    tooltipDisabled=true
-    [showXAxisLabel]="showXAxisLabel"
-    [showYAxisLabel]="showYAxisLabel"
-    [yAxis]="yAxis"
-    [xAxis]="xAxis"
+    showXAxisLabel=true
+    showYAxisLabel=true
+    yAxis=true
+    autoScale=true
+    xAxis=true
+    animation=true
     [xAxisLabel]="xAxisLabel"
     [yAxisLabel]="yAxisLabel"
-    [results]="createGraphData()">
+    [results]="data?.allData"
+  >
   </ngx-charts-line-chart>
 </div>
