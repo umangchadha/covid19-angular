@@ -8,10 +8,12 @@ export class PwaServiceService {
   promptEvent: any;
   constructor(private swUpdate: SwUpdate) {
     window.addEventListener('beforeinstallprompt', event => {
-      this.promptEvent = event;
+      if(confirm("add this application")){
+        console.log("before install prompt");
+      }
     });
-    this.swUpdate.available.subscribe(event => {
-      if (this.promptEvent()) {
+    swUpdate.available.subscribe(event => {
+      if (confirm('New version available! would you like to update?')) {
         window.location.reload();
       }
     });
