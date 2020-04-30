@@ -10,12 +10,13 @@ export class PwaServiceService {
     window.addEventListener('beforeinstallprompt', event => {
       this.promptEvent = event;
     });
-    swUpdate.available.subscribe(event => {
+    this.swUpdate.available.subscribe(event => {
       if (this.promptEvent()) {
         window.location.reload();
       }
     });
   }
+
 }
 
 
