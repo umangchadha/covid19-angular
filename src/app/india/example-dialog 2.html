@@ -1,0 +1,21 @@
+<div style="position: relative;">
+  <button mat-mini-fab
+    style="position: absolute;right: 0;top:-10px;"
+    (click)="onNoClick()">
+    <mat-icon>close</mat-icon>
+  </button>
+  <h1>{{data.stateName}}</h1>
+
+  <ngx-charts-line-chart [scheme]="colorScheme"
+    view
+    legend=true
+    tooltipDisabled=true
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [yAxis]="yAxis"
+    [xAxis]="xAxis"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    [results]="createGraphData()">
+  </ngx-charts-line-chart>
+</div>

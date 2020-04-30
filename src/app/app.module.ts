@@ -14,6 +14,8 @@ import { MessageService } from './message.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material-module';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     HttpClientModule,
     MaterialModule,
     BrowserAnimationsModule,
-    NgxChartsModule
+    NgxChartsModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
 
   ],
   exports: [

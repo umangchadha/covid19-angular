@@ -1,22 +1,32 @@
-    <div class="home1">
+<button *ngIf="Pwa.promptEvent"
+    (click)="installPwa()">
+    Install
+</button>
+<div class="home1">
     <h1 class="stats">COVID19 STATS</h1>
+</div>
 
-    </div>
 
-
-    <div class="parent">
-        <div class="home">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body link_text" style="text-align:center">
-                <a class="link_color " routerLink="/World" routerLinkActive="active">WORLD</a>
-                    </div>
-            </div>
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body link_text" >
-                <a class="link_color" routerLink="/India" routerLinkActive="active">INDIA</a>
-                </div>
-
+<div class="parent">
+    <div class="home">
+        <div class="card"
+            style="width: 18rem;">
+            <div class="card-body link_text"
+                style="text-align:center">
+                <a class="link_color "
+                    routerLink="/World"
+                    routerLinkActive="active">WORLD</a>
             </div>
         </div>
-        
+        <div class="card"
+            style="width: 18rem;">
+            <div class="card-body link_text">
+                <a class="link_color"
+                    routerLink="/India"
+                    routerLinkActive="active">INDIA</a>
+            </div>
+
+        </div>
     </div>
+
+</div>

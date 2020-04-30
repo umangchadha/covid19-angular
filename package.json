@@ -23,6 +23,7 @@
     "@angular/platform-browser": "~9.1.0",
     "@angular/platform-browser-dynamic": "~9.1.0",
     "@angular/router": "~9.1.0",
+    "@angular/service-worker": "~9.1.0",
     "@swimlane/ngx-charts": "^14.0.0",
     "flag-icon-css": "^3.4.6",
     "moment": "^2.24.0",
