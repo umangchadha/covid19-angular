@@ -32,7 +32,7 @@ jobs:
       - name: Deploy to covid-19-status.surge.sh
         uses: dswistowski/surge-sh-action@v1
         with:
-          domain: 'covid-19-status.surge.sh'
+          domain: 'https://covid-19-status.surge.sh'
           project: 'dist/covid19/'
           login: ${{ secrets.SURGE_DOMAIN }}
           token: ${{ secrets.SURGE_TOKEN }}
