@@ -1,3 +1,11 @@
+<div fxLayout
+    fxLayoutAlign="end">
+    <button mat-raised-button
+        (click)="addToHomeScreen()"
+        color="accent">Add To Mobile</button>
+</div>
+
+
 <mat-spinner *ngIf="messageService?.spinner"
     class="loader-position"></mat-spinner>
 
