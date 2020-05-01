@@ -1,25 +1,55 @@
-<div class="container">
-  <a class="link_color"
-    routerLink="/India"
-    routerLinkActive="active">See India Stats</a>
-  <a class="link_color"
-    routerLink="/Home"
-    routerLinkActive="active"><button class="btn"><i class="fa fa-home"></i></button></a>
+<div class="container"
+  fxLayout="column"
+  fxLayoutAlign="center center">
+  <div fxFlex
+    fxLayout
+    fxLayoutAlign="center center"
+    fxLayoutGap="20px">
+    <a class="link_color"
+      routerLink="/india"
+      routerLinkActive="active">See India Stats</a>
+    <a class="link_color"
+      routerLink="/"
+      routerLinkActive="active"
+      matTooltip="home">
+      <mat-icon>home</mat-icon>
+    </a>
+  </div>
 
-  <div class="stats-cards">
-    <div fxLayout="row wrap">
-      <div class="card"
-        fxFlex="30"
-        *ngFor="let country of masterData.countries_stat"
-        [style.display]="country?.country_name?'flex':'none'">
-        <span [className]="classFinder(country?.country_name)"></span>
-        <div class="card-content">
-          <code>{{country.country_name}} </code>
-          <div class="new-cases">Cases : {{country.cases}}</div>
-          <div class="warn">Deaths : {{country.deaths}}</div>
-          <div class="recovered">Recovered : {{country.total_recovered}}</div>
+  <div fxFlex
+    fxLayout="row wrap"
+    fxLayoutGap=20px
+    fxLayoutAlign="center center">
+    <mat-card fxFlex.gt-sm="25"
+      fxFlex="40"
+      *ngFor="let country of masterData.countries_stat">
+      <div fxLayout="column"
+        fxFlex
+        fxLayoutGap="20px">
+        <div fxLayout
+          fxFlex
+          fxLayoutGap="20px"
+          fxLayoutAlign="space-between center"> <span [className]="classFinder(country?.country_name)"></span>
+          <code>{{country.country_name | uppercase}} </code></div>
+
+        <div class=" card-content"
+          fxLayout="column">
+
+          <div class="new-cases"
+            fxLayout
+            fxFlex=100
+            fxLayoutAlign="space-between center">
+            <span>Cases :</span> {{country.cases}}</div>
+          <div class="warn"
+            fxLayout
+            fxLayoutAlign="space-between center">
+            <span> Deaths :</span> {{country.deaths}}</div>
+          <div class="recovered"
+            fxLayout
+            fxLayoutAlign="space-between center">
+            <span> Recovered :</span> {{country.total_recovered}}</div>
         </div>
       </div>
-    </div>
+    </mat-card>
   </div>
 </div>

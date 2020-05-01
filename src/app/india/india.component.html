@@ -1,13 +1,22 @@
-<div class="container">
-  <a class="link_color"
-    routerLink="/World"
-    routerLinkActive="active">See World Stats</a>
-  <a class="link_color"
-    routerLink="/Home"
-    routerLinkActive="active"><button class="btn"><i class="fa fa-home"></i></button></a>
+<div class="container"
+  fxLayout="column">
+  <div fxFlex="100"
+    fxLayout
+    fxLayoutAlign="space center"
+    fxLayoutGap="20px">
+    <a class="link_color"
+      routerLink="/world"
+      routerLinkActive="active">See World Stats</a>
+    <a class="link_color"
+      routerLink="/"
+      routerLinkActive="active"
+      matTooltip="home">
+      <mat-icon>home</mat-icon>
+    </a>
+  </div>
 
-  <div class="graph">
-    <div class="card india">
+  <div fxFlex>
+    <mat-card class="india">
       <span class="flag-icon flag-icon-in"> </span>
       <div> Last updated : {{india[0]?.lastupdatedtime}} </div>
       <div class="card-content india"
@@ -21,11 +30,9 @@
         <div fxFlex=31
           class="recovered">Recovered : {{india[0]?.recovered}}</div>
       </div>
-    </div>
+    </mat-card>
 
-    <div ngClass.lt-md="nomarquee"
-      class="marquee"
-      fxLayout="column"
+    <div fxLayout="column"
       fxLayoutGap="30px">
       <div *ngFor="let state of statewiseData">
         <div *ngIf="state.state!=='Total'"
@@ -47,3 +54,4 @@
       </div>
     </div>
   </div>
+</div>

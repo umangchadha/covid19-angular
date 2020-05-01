@@ -1,40 +1,17 @@
 .container {
+  font: 1em 'Segoe UI', Tahoma, Helvetica, Sans-Serif;
+  color: white;
+  padding: 20px;
 
-  .graph {
-    font: 1em 'Segoe UI', Tahoma, Helvetica, Sans-Serif;
-    position: relative;
-    margin-bottom: 80px;
-
-    .card.india {
-      top: 0px;
-      height: 100px;
-      z-index: 200;
-      position: absolute;
-      background-image: linear-gradient(#FFF, rgba(255, 255, 255, .3));
-      background-color: white;
-      width: 100%;
-    }
-
-    .state-data {
-      text-align: right;
-    }
-
-    .marquee {
-      top: 70px;
-      position: relative;
-      box-sizing: border-box;
-      animation: marquee 35s linear infinite;
-      color: white;
-      z-index: 1;
-
-      &.nomarquee {
-        animation: none;
-      }
-    }
-
-
-
+  .india {
+    height: 100px;
   }
+
+  .state-data {
+    text-align: right;
+  }
+
+
 
   .stats-cards {
 

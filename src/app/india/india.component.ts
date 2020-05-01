@@ -28,6 +28,11 @@ export class IndiaComponent implements OnInit {
     setInterval(() => {
       this.getData();
     }, 10000); // 10 sec interval
+
+
+    setInterval(() => {
+      this.getStateData();
+    }, 60000); // 60 sec interval
   }
 
 
@@ -43,11 +48,12 @@ export class IndiaComponent implements OnInit {
   }
 
   getStateData() {
-
+    this.message.spinner = true;
     this.httpClient.get('https://api.covid19india.org/states_daily.json')
       .subscribe((a: any) => {
         this.timeSeries = a;
       });
+    this.message.spinner = false;
   }
 
   createGraphData(state) {
@@ -100,7 +106,7 @@ export class IndiaComponent implements OnInit {
 
     const dialogRef = this.dialog.open(DialogOverviewDialogComponent, {
       width: '100%',
-      height: '45%',
+      height: '65%',
       data: { allData: obj, stateName: state.state, stateInfo: state }
     });
 

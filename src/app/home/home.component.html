@@ -1,32 +1,21 @@
-<!-- <button (click)="installPwa()">
-    Install
-</button> -->
-
-<div class="home1">
+<div fxLayout="column"
+    fxFill
+    fxLayoutAlign="center center">
     <h1 class="stats">COVID19 STATS</h1>
-</div>
 
+    <div fxLayout
+        fxLayoutAlign="center"
+        fxLayoutGap="20px">
 
-<div class="parent">
-    <div class="home">
-        <div class="card"
-            style="width: 18rem;">
-            <div class="card-body link_text"
-                style="text-align:center">
-                <a class="link_color "
-                    routerLink="/World"
-                    routerLinkActive="active">WORLD</a>
-            </div>
-        </div>
-        <div class="card"
-            style="width: 18rem;">
-            <div class="card-body link_text">
-                <a class="link_color"
-                    routerLink="/India"
-                    routerLinkActive="active">INDIA</a>
-            </div>
-
-        </div>
+        <mat-card fxLayoutAlign="center">
+            <a class="link_color "
+                routerLink="/world"
+                routerLinkActive="active">WORLD</a>
+        </mat-card>
+        <mat-card fxLayoutAlign="center">
+            <a class="link_color"
+                routerLink="/india"
+                routerLinkActive="active">INDIA</a>
+        </mat-card>
     </div>
-
 </div>
