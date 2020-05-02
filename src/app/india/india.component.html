@@ -14,7 +14,7 @@
       <mat-icon>home</mat-icon>
     </a>
   </div>
-
+  
   <div fxFlex>
     <mat-card class="india">
       <span class="flag-icon flag-icon-in"> </span>
@@ -51,6 +51,26 @@
             <span> Recovered: <span class="recovered">{{state.recovered}}</span></span>
           </span>
         </div>
+        <!-- <button mat-raised-button
+        (click)="createTable(state.state)">District</button>
+        <app-district [distArr]="newDist"></app-district> -->
+        <div>{{createTable(state.state)}}</div>
+            <mat-accordion >
+  
+                <mat-expansion-panel >
+                <mat-expansion-panel-header>
+                  See District
+                </mat-expansion-panel-header>
+
+                    <div *ngFor="let s of newDist">
+                
+                      <p>{{s.district}}</p>
+                  </div>
+                
+                </mat-expansion-panel>
+              </mat-accordion>
+          
+
       </div>
     </div>
   </div>

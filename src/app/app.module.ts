@@ -16,6 +16,7 @@ import { MaterialModule } from './material-module';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { DistrictComponent } from './district/district.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { environment } from '../environments/environment';
     WorldComponent,
     IndiaComponent,
     HomeComponent,
-    DialogOverviewDialogComponent
+    DialogOverviewDialogComponent,
+    DistrictComponent
 
   ],
   imports: [
