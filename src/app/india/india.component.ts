@@ -19,21 +19,32 @@ export class IndiaComponent implements OnInit, OnDestroy {
   timeSeries: any;
   dataInterval: any;
   stateDataInterval: any;
+  distDataInterval: any;
+  distDataAll: any;
+  districtDataOne: any = [];
+
   constructor(private httpClient: HttpClient, public message: MessageService, public dialog: MatDialog) { }
 
   ngOnInit() {
+    // call all the APIs on load 
     this.getData();
     this.getStateData();
+    this.getDisttData();
+
+    // set the timer for all the APIs
+
     this.dataInterval = setInterval(() => {
       this.getData();
     }, 10000); // 10 sec interval
 
-
     this.stateDataInterval = setInterval(() => {
       this.getStateData();
-    }, 60000); // 60 sec interval
-  }
+    }, 60000); // 1 min
 
+    this.distDataInterval = setInterval(() => {
+      this.getDisttData();
+    }, 60000); // 1 min
+  }
 
   getData() {
     this.message.spinner = true;
@@ -54,6 +65,20 @@ export class IndiaComponent implements OnInit, OnDestroy {
       });
     this.message.spinner = false;
   }
+  getDisttData() {
+    this.httpClient.get('https://api.covid19india.org/v2/state_district_wise.json')
+      .subscribe((a: any) => {
+        this.distDataAll = a;
+      });
+  }
+
+  createDistrictData(state, i) {
+    if (this.distDataAll) {
+      this.districtDataOne = this.distDataAll.filter(a => a.state === state)[0].districtData;
+      this.districtDataOne.index = i;
+    }
+  }
+
 
   createGraphData(state) {
     this.message.spinner = true;
@@ -116,6 +141,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     clearInterval(this.stateDataInterval);
     clearInterval(this.dataInterval);
+    clearInterval(this.distDataInterval);
   }
 
 }
