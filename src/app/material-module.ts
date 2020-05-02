@@ -1,4 +1,4 @@
-import { ModuleWithProviders, NgModule} from "@angular/core";
+import { ModuleWithProviders, NgModule } from "@angular/core";
 import { MAT_LABEL_GLOBAL_OPTIONS, MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatIconRegistry } from '@angular/material/icon';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
@@ -34,6 +34,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
+import { MatBottomSheetModule, MatBottomSheetRef, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet'
 
 @NgModule({
     imports: [
@@ -70,7 +71,8 @@ import { MatTreeModule } from '@angular/material/tree';
         MatToolbarModule,
         MatTooltipModule,
         MatTreeModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        MatBottomSheetModule
     ],
     exports: [
         MatAutocompleteModule,
@@ -106,9 +108,17 @@ import { MatTreeModule } from '@angular/material/tree';
         MatToolbarModule,
         MatTooltipModule,
         MatTreeModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        MatBottomSheetModule
     ],
-    providers: [     
+    providers: [
+        {
+            provide: MatBottomSheetRef,
+            useValue: {}
+        }, {
+            provide: MAT_BOTTOM_SHEET_DATA,
+            useValue: {}
+        }
     ]
 })
 export class MaterialModule {

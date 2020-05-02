@@ -4,8 +4,9 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class MessageService {
-  spinner: boolean=false;
+  spinner: any = false;
+  ios;
   constructor() { }
-  
- 
+
+
 }

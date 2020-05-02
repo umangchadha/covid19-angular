@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -10,27 +10,25 @@ import { MessageService } from '../message.service';
   templateUrl: './india.component.html',
   styleUrls: ['./india.component.scss']
 })
-export class IndiaComponent implements OnInit {
+export class IndiaComponent implements OnInit, OnDestroy {
   title = 'covid';
   masterData: any = {};
   india = {};
   statewiseData: any;
   timeSeries: any;
-
-
-
-
+  dataInterval: any;
+  stateDataInterval: any;
   constructor(private httpClient: HttpClient, public message: MessageService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.getData();
     this.getStateData();
-    setInterval(() => {
+    this.dataInterval = setInterval(() => {
       this.getData();
     }, 10000); // 10 sec interval
 
 
-    setInterval(() => {
+    this.stateDataInterval = setInterval(() => {
       this.getStateData();
     }, 60000); // 60 sec interval
   }
@@ -115,6 +113,10 @@ export class IndiaComponent implements OnInit {
     });
 
   }
+  ngOnDestroy() {
+    clearInterval(this.stateDataInterval);
+    clearInterval(this.dataInterval);
+  }
 
 }
 
@@ -147,4 +149,5 @@ export class DialogOverviewDialogComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
+
 }

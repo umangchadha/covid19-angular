@@ -92,3 +92,7 @@ body {
 .cdk-global-scrollblock {
   position: static !important;
 }
+
+div[fxLayout="column"]>div[fxFlex] {
+  flex: 1 0 auto !important;
+}

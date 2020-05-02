@@ -1,8 +1,9 @@
 <div fxLayout
     fxLayoutAlign="end">
     <button mat-raised-button
+        *ngIf="!messageService.ios"
         (click)="addToHomeScreen()"
-        color="accent">Add To Mobile</button>
+        color="accent">Add To Mobile {{messageService.ios}}</button>
 </div>
 
 

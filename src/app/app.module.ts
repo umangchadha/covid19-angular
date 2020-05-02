@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,6 +16,10 @@ import { MaterialModule } from './material-module';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { PromptComponent } from './prompt-component/prompt-component.component';
+import { PwaService } from './pwa.service';
+
+const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
 
 @NgModule({
   declarations: [
@@ -23,10 +27,12 @@ import { environment } from '../environments/environment';
     WorldComponent,
     IndiaComponent,
     HomeComponent,
-    DialogOverviewDialogComponent
+    DialogOverviewDialogComponent,
+    PromptComponent
 
   ],
   imports: [
+
     BrowserModule,
     AppRoutingModule,
     FlexLayoutModule,
@@ -46,9 +52,14 @@ import { environment } from '../environments/environment';
     BrowserAnimationsModule,
     NgxChartsModule
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }, MessageService],
+
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy },
+  { provide: APP_INITIALIZER, useFactory: initializer, deps: [PwaService], multi: true }, MessageService],
 
   bootstrap: [AppComponent],
   entryComponents: [DialogOverviewDialogComponent]
 })
+
+
 export class AppModule { }
+

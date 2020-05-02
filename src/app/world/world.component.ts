@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnChanges, OnDestroy } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from '../message.service';
 import { COUNTRIES } from '../countries';
@@ -11,14 +11,15 @@ import * as _ from 'lodash';
 
 })
 
-export class WorldComponent implements OnChanges {
+export class WorldComponent implements OnChanges, OnDestroy {
   title = 'covid';
   masterData: any = {};
   show: any = false;
+  dataInterval: any;
   constructor(private httpClient: HttpClient, public messageService: MessageService) { this.getData(); }
 
   ngOnChanges() {
-    setInterval(() => {
+    this.dataInterval = setInterval(() => {
       this.getData();
     }, 10000); // 10 sec interval
 
@@ -52,4 +53,7 @@ export class WorldComponent implements OnChanges {
     this.show = country ? true : false;
   }
 
+  ngOnDestroy() {
+    clearInterval(this.dataInterval);
+  }
 }

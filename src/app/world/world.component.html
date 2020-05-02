@@ -1,9 +1,8 @@
 <div class="container"
   fxLayout="column">
-  <div fxFlex=50
+  <div style="margin-left: 10%;"
     fxLayout
-    fxLayoutAlign="space-around"
-    fxLayoutGap="20px">
+    fxLayoutAlign="start">
     <a class="link_color"
       routerLink="/india"
       routerLinkActive="active">See India Stats <a class="link_color"
@@ -17,18 +16,21 @@
 
   <div fxFlex
     fxLayout="row wrap"
-    fxLayoutGap=20px
     fxLayoutAlign="center center">
+
     <mat-card fxFlex.gt-sm="25"
-      fxFlex="40"
-      *ngFor="let country of masterData.countries_stat">
+      fxFlex="43"
+      *ngFor="let country of masterData.countries_stat"
+      fxShow="{{country.country_name.length>1}}">
+
       <div fxLayout="column"
         fxFlex
         fxLayoutGap="20px">
         <div fxLayout
           fxFlex
-          fxLayoutGap="20px"
-          fxLayoutAlign="space-between center"> <span [className]="classFinder(country?.country_name)"></span>
+          fxLayoutGap="5px"
+          fxLayoutAlign="start center">
+          <span [className]="classFinder(country?.country_name)"></span>
           <code>{{country.country_name | uppercase}} </code></div>
 
         <div class=" card-content"
