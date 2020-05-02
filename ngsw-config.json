@@ -5,6 +5,7 @@
     {
       "name": "app",
       "installMode": "lazy",
+       "updateMode": "lazy",
       "resources": {
         "files": [
           "/favicon.ico",
