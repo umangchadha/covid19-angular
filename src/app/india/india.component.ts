@@ -16,8 +16,8 @@ export class IndiaComponent implements OnInit {
   india = {};
   statewiseData: any;
   timeSeries: any;
-  distData: any;
-  newDist=[];
+  distDataAll: any;
+  districtDataOne: any = [];
   panelOpenState = false;
 
 
@@ -30,12 +30,12 @@ export class IndiaComponent implements OnInit {
     this.getDisttData();
     setInterval(() => {
       this.getData();
-    }, 10000); // 10 sec interval
+    }, 6000000); // 10 sec interval
 
 
     setInterval(() => {
       this.getStateData();
-    }, 60000); // 60 sec interval
+    }, 6000000); // 60 sec interval
   }
 
 
@@ -44,7 +44,6 @@ export class IndiaComponent implements OnInit {
     this.httpClient.get('https://api.covid19india.org/data.json')
       .subscribe((a: any) => {
         this.statewiseData = a.statewise;
-        console.log(this.statewiseData)
         this.india = _.filter(this.statewiseData, (b: any) => b.state === 'Total');
       });
 
@@ -60,27 +59,17 @@ export class IndiaComponent implements OnInit {
     this.message.spinner = false;
   }
 
-  getDisttData(){
+  getDisttData() {
     this.httpClient.get('https://api.covid19india.org/v2/state_district_wise.json')
       .subscribe((a: any) => {
-        this.distData = a;
-        console.log(this.distData)
+        this.distDataAll = a;
       });
-      
-     
   }
 
-  createTable(state){ 
-    console.log("called")
-    const dist=[]; 
-    if(this.distData){
-      this.distData.filter(a=>{
-        if(a.state===state){
-          this.newDist=a.districtData;
-      }
-
-      })
-      console.log()
+  createDistrictData(state, i) {
+    if (this.distDataAll) {
+      this.districtDataOne = this.distDataAll.filter(a => a.state === state)[0].districtData;
+      this.districtDataOne.index = i;
     }
   }
 
@@ -143,6 +132,10 @@ export class IndiaComponent implements OnInit {
       console.log('The dialog was closed');
     });
 
+  }
+
+  onSelectedPhone(data) {
+    data.active = true;
   }
 
 }

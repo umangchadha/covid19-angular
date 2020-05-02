@@ -14,7 +14,7 @@
       <mat-icon>home</mat-icon>
     </a>
   </div>
-  
+
   <div fxFlex>
     <mat-card class="india">
       <span class="flag-icon flag-icon-in"> </span>
@@ -34,44 +34,69 @@
 
     <div fxLayout="column"
       fxLayoutGap="30px">
-      <div *ngFor="let state of statewiseData">
+      <div *ngFor="let state of statewiseData;index as i">
         <div *ngIf="state.state!=='Total'"
-          fxLayout
-          fxLayoutAlign="space-between">
-          <span fxFlex
-            class="state">{{state.state}}</span>
-          <button mat-raised-button
-            (click)="createGraphData(state)">Graph</button>
+          fxLayout="column">
+          <div fxLayout="row">
+            <span fxFlex
+              class="state">{{state.state}}</span>
+            <button mat-raised-button
+              (click)="createGraphData(state)">Graph</button>
 
-          <span fxFlex
-            class="state-data"
-            fxLayout="column">
-            <span> Confirmed: <span class="new-cases">{{state.confirmed}}</span></span>
-            <span> Deaths: <span class="warn">{{state.deaths}}</span></span>
-            <span> Recovered: <span class="recovered">{{state.recovered}}</span></span>
-          </span>
+            <span fxFlex
+              class="state-data"
+              fxLayout="column">
+              <span> Confirmed: <span class="new-cases">{{state.confirmed}}</span></span>
+              <span> Deaths: <span class="warn">{{state.deaths}}</span></span>
+              <span> Recovered: <span class="recovered">{{state.recovered}}</span></span>
+            </span>
+          </div>
+          <button mat-button
+            color="accent"
+            class="district-button"
+            fxLayout
+            fxLayoutAlign="start"
+            (click)="createDistrictData(state.state,i)">Districts</button>
+
+          <mat-card *ngIf="districtDataOne && districtDataOne.index===i">
+            <button mat-mini-fab
+              class="district-close"
+              (click)="districtDataOne=null">
+              <mat-icon>close</mat-icon>
+            </button>
+            <div *ngFor="let district of districtDataOne">
+              <span class="district-data-container"
+                fxLayout="row"
+                fxLayoutAlign="space-between">
+                <span fxFlex
+                  class="district-label new-cases"> {{district.district}} </span>
+                <span fxFlex
+                  class="district-data"
+                  fxLayout="column">
+                  <span class="new-cases">
+                    Confirmed:{{district.confirmed}}
+                  </span>
+                  <span class="new-cases warn">
+                    Deaths:{{district.deceased}}
+                  </span>
+                  <span class="new-cases recovered">
+                    Recovered:{{district.recovered}}
+                  </span>
+                </span>
+              </span>
+            </div>
+          </mat-card>
         </div>
-        <!-- <button mat-raised-button
-        (click)="createTable(state.state)">District</button>
-        <app-district [distArr]="newDist"></app-district> -->
-        <div>{{createTable(state.state)}}</div>
-            <mat-accordion >
-  
-                <mat-expansion-panel >
-                <mat-expansion-panel-header>
-                  See District
-                </mat-expansion-panel-header>
 
-                    <div *ngFor="let s of newDist">
-                
-                      <p>{{s.district}}</p>
-                  </div>
-                
-                </mat-expansion-panel>
-              </mat-accordion>
-          
+
+
+
+
+
+
 
       </div>
+
     </div>
   </div>
 </div>

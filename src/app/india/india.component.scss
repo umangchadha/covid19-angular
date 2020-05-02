@@ -12,6 +12,9 @@
   }
 
 
+  .district-data-container {
+    margin-bottom: 10px;
+  }
 
   .stats-cards {
 
@@ -75,11 +78,12 @@ code {
   text-decoration: underline;
 }
 
-.btn {
+.district-button {
+  text-decoration: underline;
+}
 
-  border: none;
-  color: white;
-  padding: 12px 16px;
-  font-size: 16px;
-  cursor: pointer;
+.district-close {
+  position: absolute;
+  top: -30px;
+  right: 0px
 }
