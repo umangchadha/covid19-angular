@@ -4,6 +4,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 
 import * as _ from 'lodash';
 import { MessageService } from '../message.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-india',
@@ -101,7 +102,6 @@ export class IndiaComponent implements OnInit, OnDestroy {
     }
   }
   openDialog(obj, state): void {
-
     const dialogRef = this.dialog.open(DialogOverviewDialogComponent, {
       width: '100%',
       height: '65%',
@@ -136,13 +136,23 @@ export class DialogOverviewDialogComponent {
   xAxisLabel = 'Dates';
   yAxisLabel = 'Cases';
   results = [];
-
+  confToday;
+  recoveredToday;
+  diedToday;
   colorScheme = {
     domain: ['#CFC0BB', '#5AA454', '#E44D25']
   };
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
+    const todayConf = this.data.allData.filter(a => a.name === 'Confirmed')[0];
+    this.confToday = todayConf.series.filter(a => a.name === moment().format('DD-MMM-YY'))[0].value;
+
+    const todayRec = this.data.allData.filter(a => a.name === 'Recovered')[0];
+    this.recoveredToday = todayRec.series.filter(a => a.name === moment().format('DD-MMM-YY'))[0].value;
+
+    const todayDie = this.data.allData.filter(a => a.name === 'Deceased')[0];
+    this.diedToday = todayDie.series.filter(a => a.name === moment().format('DD-MMM-YY'))[0].value;
   }
 
 

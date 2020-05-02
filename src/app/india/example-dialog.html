@@ -1,25 +1,31 @@
 <div style="position: relative;">
-  <button
-    mat-mini-fab
+  <button mat-mini-fab
     style="position: absolute;right: 0;top:-10px;"
-    (click)="onNoClick()"
-  >
+    (click)="onNoClick()">
     <mat-icon>close</mat-icon>
   </button>
   <div fxLayout="column">
     <h1 fxFlex="10">{{data.stateName}}
-      <div
-        style="font-size: 13px; line-height: 14px;"
-        fxLayout="column"
-      >
-
-        <span> Confirmed: <span style="font-weight: bold;">{{data.stateInfo.confirmed}}</span></span>
-        <span> Deaths: <span style="color:red">{{data.stateInfo.deaths}}</span></span>
-        <span> Recovered: <span style="color:green">{{data.stateInfo.recovered}}</span></span>
+      <div style="font-size: 13px; line-height: 14px;"
+        fxLayout="column">
+        <div fxLayout
+          fxLayoutAlign="space-between">
+          <span fxFlex> Confirmed: <span style="font-weight: bold;">{{data.stateInfo.confirmed}}</span></span>
+          <span fxFlex> Today: <span style="font-weight: bold;">{{confToday}}</span></span>
+        </div>
+        <div fxLayout
+          fxLayoutAlign="space-between">
+          <span fxFlex> Deaths: <span style="color:red">{{data.stateInfo.deaths}}</span></span>
+          <span fxFlex> Today: <span style="color:red">{{diedToday}}</span></span>
+        </div>
+        <div fxLayout
+          fxLayoutAlign="space-between">
+          <span fxFlex> Recovered: <span style="color:green">{{data.stateInfo.recovered}}</span></span>
+          <span fxFlex> Today: <span style="color:green">{{recoveredToday}}</span></span>
+        </div>
       </div>
     </h1>
-    <ngx-charts-line-chart
-      fxFlex="200px"
+    <ngx-charts-line-chart fxFlex="200px"
       fxFlex.lt-md="150px"
       fxFlexFill
       [scheme]="colorScheme"
@@ -34,8 +40,7 @@
       animation=true
       [xAxisLabel]="xAxisLabel"
       [yAxisLabel]="yAxisLabel"
-      [results]="data?.allData"
-    >
+      [results]="data?.allData">
     </ngx-charts-line-chart>
   </div>
 </div>
