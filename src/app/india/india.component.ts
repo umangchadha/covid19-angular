@@ -146,13 +146,14 @@ export class DialogOverviewDialogComponent {
     public dialogRef: MatDialogRef<DialogOverviewDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     const todayConf = this.data.allData.filter(a => a.name === 'Confirmed')[0];
-    this.confToday = todayConf.series.filter(a => a.name === moment().format('DD-MMM-YY'))[0].value;
+    this.confToday = todayConf.series[todayConf.series.length - 1];
+
 
     const todayRec = this.data.allData.filter(a => a.name === 'Recovered')[0];
-    this.recoveredToday = todayRec.series.filter(a => a.name === moment().format('DD-MMM-YY'))[0].value;
+    this.recoveredToday = todayRec.series[todayRec.series.length - 1];
 
     const todayDie = this.data.allData.filter(a => a.name === 'Deceased')[0];
-    this.diedToday = todayDie.series.filter(a => a.name === moment().format('DD-MMM-YY'))[0].value;
+    this.diedToday = todayDie.series[todayDie.series.length - 1];
   }
 
 

@@ -11,17 +11,19 @@
         <div fxLayout
           fxLayoutAlign="space-between">
           <span fxFlex> Confirmed: <span style="font-weight: bold;">{{data.stateInfo.confirmed}}</span></span>
-          <span fxFlex> Today: <span style="font-weight: bold;">{{confToday}}</span></span>
+          <span fxFlex> {{confToday.name| slice:0:6}}: <span
+              style="font-weight: bold;">{{confToday.value}}</span></span>
         </div>
         <div fxLayout
           fxLayoutAlign="space-between">
           <span fxFlex> Deaths: <span style="color:red">{{data.stateInfo.deaths}}</span></span>
-          <span fxFlex> Today: <span style="color:red">{{diedToday}}</span></span>
+          <span fxFlex> {{diedToday.name| slice:0:6}}: <span style="color:red">{{diedToday.value}}</span></span>
         </div>
         <div fxLayout
           fxLayoutAlign="space-between">
           <span fxFlex> Recovered: <span style="color:green">{{data.stateInfo.recovered}}</span></span>
-          <span fxFlex> Today: <span style="color:green">{{recoveredToday}}</span></span>
+          <span fxFlex> {{recoveredToday.name | slice:0:6}}: <span
+              style="color:green">{{recoveredToday.value}}</span></span>
         </div>
       </div>
     </h1>
