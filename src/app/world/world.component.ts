@@ -16,6 +16,7 @@ export class WorldComponent implements OnChanges, OnDestroy {
   masterData: any = {};
   show: any = false;
   dataInterval: any;
+  updateTimestamp: any;
   constructor(private httpClient: HttpClient, public messageService: MessageService) { this.getData(); }
 
   ngOnChanges() {
@@ -36,9 +37,10 @@ export class WorldComponent implements OnChanges, OnDestroy {
 
     this.httpClient.get('https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php', httpOptions).subscribe(a => {
       this.masterData = a;
-      this.masterData.countries_stat = _.orderBy(this.masterData.countries_stat, (obj) => {
-        return parseInt(obj.rhid, 10);
-      }, 'cases', 'desc');
+      this.masterData.countries_stat = _.orderBy(this.masterData.countries_stat,
+        [obj => parseFloat(obj.cases.replace(/,/g, ''))], ['desc']);
+
+      this.updateTimestamp = this.masterData.statistic_taken_at;
       this.messageService.spinner = false;
     });
 

@@ -1,19 +1,34 @@
 <div class="container"
   fxLayout="column">
+
+  <!-- Top links -->
   <div style="margin-left: 10%;"
     fxLayout
-    fxLayoutAlign="start">
-    <a class="link_color"
-      routerLink="/india"
-      routerLinkActive="active">See India Stats <a class="link_color"
+    fxLayoutAlign="space-between end">
+    <span fxLayout
+      fxFlex="30"
+      fxLayoutAlign="start">
+      <a fxFlex="70"
+        class="link_color"
+        routerLink="/india"
+        matTooltip="See India Stats"
+        routerLinkActive="active">India Stats
+      </a>
+      <a fxFlex="30px"
+        class="link_color"
         routerLink="/"
         routerLinkActive="active"
         matTooltip="home">
         <mat-icon>home</mat-icon>
-      </a></a>
-
+      </a>
+    </span>
+    <!-- Time Stamp -->
+    <span fxFlex="70"
+      fxLayoutAlign="end"
+      class="world-timestamp">Last Updated : {{updateTimestamp}} : UTC</span>
   </div>
 
+  <!-- Main content -->
   <div fxFlex
     fxLayout="row wrap"
     fxLayoutAlign="center center">

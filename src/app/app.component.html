@@ -3,7 +3,8 @@
     <button mat-raised-button
         *ngIf="!messageService.ios"
         (click)="addToHomeScreen()"
-        color="accent">Add To Mobile {{messageService.ios}}</button>
+        matTooltip="Install App on Android Phones"
+        color="accent">Add To Mobile - Android Users</button>
 </div>
 
 

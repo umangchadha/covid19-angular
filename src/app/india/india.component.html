@@ -2,26 +2,30 @@
   fxLayout="column">
   <div fxFlex="100"
     fxLayout
-    fxLayoutAlign="space center"
-    fxLayoutGap="20px">
-    <a class="link_color"
-      routerLink="/world"
-      routerLinkActive="active">See World Stats</a>
-    <a class="link_color"
-      routerLink="/"
-      routerLinkActive="active"
-      matTooltip="home">
-      <mat-icon>home</mat-icon>
-    </a>
+    fxLayoutAlign="space-between">
+    <span fxLayoutAlign="start center"
+      fxLayoutGap="20px">
+      <a class="link_color"
+        routerLink="/world"
+        matTooltip="See World Stats"
+        routerLinkActive="active">World Stats</a>
+      <a class="link_color"
+        routerLink="/"
+        routerLinkActive="active"
+        matTooltip="home">
+        <mat-icon>home</mat-icon>
+      </a>
+    </span>
+    <div> Last updated : {{india[0]?.lastupdatedtime}} </div>
   </div>
 
   <div fxFlex>
     <mat-card class="india">
       <span class="flag-icon flag-icon-in"> </span>
-      <div> Last updated : {{india[0]?.lastupdatedtime}} </div>
+      <code>INDIA</code>
       <div class="card-content india"
         fxLayout="row wrap">
-        <code fxFlex=100>INDIA</code>
+
 
         <div fxFlex=31
           class="new-cases">Cases : {{india[0]?.confirmed}}</div>
@@ -48,10 +52,15 @@
                 fxLayoutAlign="start"
                 color="accent"
                 class="district-button"
+                matTooltip="Open Districts Details"
                 (click)="createDistrictData(state.state,i)">Districts <mat-icon>arrow_drop_down</mat-icon>
-                </button></span>
+              </button></span>
             <button mat-raised-button
-              (click)="createGraphData(state)">Graph</button>
+              matTooltip="Open graph"
+              class="graph-button"
+              (click)="createGraphData(state)">
+              <mat-icon>show_chart</mat-icon> Graph
+            </button>
 
             <span fxFlex
               class="state-data"

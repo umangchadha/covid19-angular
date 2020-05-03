@@ -26,7 +26,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
   constructor(private httpClient: HttpClient, public message: MessageService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    // call all the APIs on load 
+    // call all the APIs on load
     this.getData();
     this.getStateData();
     this.getDisttData();
@@ -35,15 +35,15 @@ export class IndiaComponent implements OnInit, OnDestroy {
 
     this.dataInterval = setInterval(() => {
       this.getData();
-    }, 10000); // 10 sec interval
+    }, 1000000); // 10 sec interval
 
     this.stateDataInterval = setInterval(() => {
       this.getStateData();
-    }, 60000); // 1 min
+    }, 6000000); // 1 min
 
     this.distDataInterval = setInterval(() => {
       this.getDisttData();
-    }, 60000); // 1 min
+    }, 6000000); // 1 min
   }
 
   getData() {
@@ -75,6 +75,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
   createDistrictData(state, i) {
     if (this.distDataAll) {
       this.districtDataOne = this.distDataAll.filter(a => a.state === state)[0].districtData;
+      this.districtDataOne = _.orderBy(this.districtDataOne, ['confirmed'], ['desc']);
       this.districtDataOne.index = i;
     }
   }
