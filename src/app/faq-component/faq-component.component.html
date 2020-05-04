@@ -1,12 +1,44 @@
-
+<div class="container"> 
+ 
+    <a class=""
+      routerLink="/home"
+      routerLinkActive="active"
+      matTooltip="home">
+      <mat-icon class="faq-color">keyboard_backspace</mat-icon>
+    </a>
+  </div>
 <mat-card class="faq">
-    <h1>faq working</h1>
-    <p>What are your sources? How is data gathered for this project?</p>
-    <p>We are using public API for updating our numbers. The data is validated by a group of volunteers and published into an API. We are using a public API from Rapid API to get our numbers about world. </p>
+    <div fxFlex class="faq-padding faq-font" >
+    <div fxLayout="column" fxLayoutAlign="center">
+    <div fxLayout="column" class="faq-margin">
+            <div fxLayout="row">Where is data coming from?</div>
+            <div class="faq-color">We are using public API for updating our numbers. We are using public API provid by <a href="https://rapidapi.com/">rapidapi.com </a>for getting information about cases in world. We are using public API present on <a href="api.covid19india.org">api.covid19india.org</a> to get numbers for India.</div>
+    </div>
+    
+    <div fxLayout="column" class="faq-margin">
+            <div>What resources are we using to publish the data?</div> 
+            <div class="faq-color">UI Code is opensource can be accessed at github repository open sourced on <a href="https://github.com/umangchadha/covid19-angular">GITHUB</a> and you can have can access it at Stackblitz also. We have used <a href="surge.sh">surge.sh</a> to publish our website.
+            </div>
 
-    <p>Where can I find the data for this?</p>
-    <p>All the data used in this app is coming from public resources and you can check all this by visiting our github page.</p>
+    </div>
+    
+    <div fxLayout="column" class="faq-margin">   
+        <div >Is this website for commercial use?</div>
+            <div class="faq-color">No. This website is merely for educational purposes and awareness.</div>
+    </div>
 
-    <p>Who are you?</p>
-    <p>We </p>
+    <div fxLayout="column" class="faq-margin">
+        <div>Are we using google analytics on the page to track user behavior and their data?</div>
+            <div class="faq-color">No, it's an opensource project. Can be verified from the code. It's a part time project and we have no intention to do that in future also.</div>
+    </div>
+
+    <div fxLayout="column" class="faq-margin">
+        <div>Who developed this?</div>
+        <div class="faq-color" fxLayout="column">
+            <a href="https://www.linkedin.com/in/umangchadha-ux-ui">Umang Chadha</a>
+            <a href="https://www.linkedin.com/in/archit-anand-b6a92110a">Archit Anand</a>
+        </div>
+    </div>
+ </div>
+</div>
 </mat-card>
