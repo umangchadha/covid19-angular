@@ -1,5 +1,6 @@
 .container {
-  margin-top: 50px
+  margin-top: 50px;
+  font-size: 16px
 }
 
 mat-card {
@@ -14,7 +15,7 @@ mat-card {
 
 .card-content {
   position: relative;
-  font-size: 12px;
+  font-size: 16px;
 
   &.india {
     height: 70px;
