@@ -25,8 +25,6 @@
       <code>INDIA</code>
       <div class="card-content india"
         fxLayout="row wrap">
-
-
         <div fxFlex=31
           class="new-cases">Cases : {{india[0]?.confirmed}}</div>
         <div fxFlex=31
@@ -42,11 +40,11 @@
         <div *ngIf="state.state!=='Total'"
           fxLayout="column"
           fxLayoutGap="20px">
-          <div fxLayout="row">
+          <mat-card fxLayout="row">
             <span fxFlex
               class="state"
               fxLayout="column">
-              <span>{{state.state}}</span>
+              <span class="label-heading">{{state.state}}</span>
               <button mat-button
                 fxLayout
                 fxLayoutAlign="start"
@@ -55,7 +53,7 @@
                 matTooltip="Open Districts Details"
                 (click)="createDistrictData(state.state,i)">Districts <mat-icon>arrow_drop_down</mat-icon>
               </button></span>
-            <button mat-raised-button
+            <button mat-button
               matTooltip="Open graph"
               class="graph-button"
               (click)="createGraphData(state)">
@@ -69,7 +67,7 @@
               <span> Deaths: <span class="warn">{{state.deaths}}</span></span>
               <span> Recovered: <span class="recovered">{{state.recovered}}</span></span>
             </span>
-          </div>
+          </mat-card>
 
 
           <mat-card *ngIf="districtDataOne && districtDataOne.index===i">

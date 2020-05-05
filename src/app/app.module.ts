@@ -18,6 +18,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { PromptComponent } from './prompt-component/prompt-component.component';
 import { PwaService } from './pwa.service';
+import { FaqComponentComponent } from './faq-component/faq-component.component';
 
 const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
 
@@ -28,11 +29,11 @@ const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt()
     IndiaComponent,
     HomeComponent,
     DialogOverviewDialogComponent,
-    PromptComponent
+    PromptComponent,
+    FaqComponentComponent
 
   ],
   imports: [
-
     BrowserModule,
     AppRoutingModule,
     FlexLayoutModule,

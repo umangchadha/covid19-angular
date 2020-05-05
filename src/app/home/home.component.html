@@ -1,6 +1,17 @@
 <div fxLayout="column"
     fxFill
-    fxLayoutAlign="center center">
+    fxLayoutAlign="start center">
+    <div style="margin:100px 0"
+        align="center"><iframe align="center"
+            src="//widget.calendarlabs.com/v1/quot.php?cid=101&ver=1.2&uid=4408967439&c=life&l=en&cbg=transparent&cb=1&cbc=transparent&cf=calibri&cfg=6199a7&qfs=i&qta=center&tfg=6199a7&tfs=bi&afc=6199a7&afs=bi"
+            frameborder=no>Loading...</iframe>
+        <div align="center"
+            style="width:140px;font-size:10px;color:#333;">Daily Quotes by <a href="https://www.calendarlabs.com/"
+                target="_blank"
+                rel="nofollow"
+                style="font-size:10px;text-decoration:none;color:#333;">CalendarLabs</a></div>
+    </div>
+
     <h1 class="stats">COVID19 STATS</h1>
 
     <div fxLayout
@@ -10,12 +21,20 @@
         <mat-card fxLayoutAlign="center">
             <a class="link_color "
                 routerLink="/world"
-                routerLinkActive="active">WORLD</a>
+                routerLinkActive="active"
+                matTooltip="World Data">WORLD</a>
         </mat-card>
         <mat-card fxLayoutAlign="center">
             <a class="link_color"
                 routerLink="/india"
-                routerLinkActive="active">INDIA</a>
+                routerLinkActive="active"
+                matTooltip="India Data">INDIA</a>
+
         </mat-card>
+    </div>
+    <div>
+        <a class="link_color_1"
+            routerLink="/faq">FAQ
+        </a>
     </div>
 </div>

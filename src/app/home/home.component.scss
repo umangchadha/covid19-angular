@@ -1,11 +1,14 @@
-.stats {
-    color: white;
-}
+@import '../../variables.scss';
+
 
 .link_color {
     color: black;
     text-decoration: underline;
     font-size: 20px;
+}
+
+h1 {
+    font-size: 34px;
 }
 
 .link_text {
@@ -14,4 +17,13 @@
 
 mat-card {
     padding: 50px;
+}
+
+.link_color_1 {
+    color: White;
+    text-decoration: underline;
+    font-size: 20px;
+    bottom: 30px;
+    position: fixed;
+    padding-bottom: 10px;
 }

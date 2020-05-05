@@ -1,3 +1,7 @@
+.container {
+  margin-top: 50px
+}
+
 mat-card {
   margin: 10px
 }
@@ -6,7 +10,6 @@ mat-card {
 
   width: 30px;
   height: 30px;
-  opacity: 0.5;
 }
 
 .card-content {
@@ -51,6 +54,5 @@ code {
 }
 
 .world-timestamp {
-  color: white;
   margin-right: 10%;
 }
