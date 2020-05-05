@@ -23,6 +23,7 @@
     <mat-card class="india">
       <span class="flag-icon flag-icon-in"> </span>
       <code class="label-heading">INDIA</code>
+      
       <div class="card-content india"
         fxLayout="row wrap">
         <div fxFlex=31
@@ -33,7 +34,20 @@
           class="recovered">Recovered : {{india[0]?.recovered}}</div>
       </div>
     </mat-card>
-
+    <!-- <button mat-button
+                fxLayout
+                fxLayoutAlign="start"
+                color="accent"
+                class="district-button"
+                matTooltip="Open Districts Details"
+                (click)="createGraphIndia()">Districts <mat-icon>arrow_drop_down</mat-icon>
+              </button> -->
+              <button mat-button
+              matTooltip="Open graph"
+              class="graph-button"
+              (click)="createGraphIndia()">
+              <mat-icon>show_chart</mat-icon> India
+            </button>
     <div fxLayout="column"
       fxLayoutGap="30px">
       <div *ngFor="let state of statewiseData;index as i">

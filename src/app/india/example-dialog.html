@@ -1,3 +1,4 @@
+<div *ngIf="data.graphType=='district'">
 <div style="position: relative;">
   <button mat-mini-fab
     style="position: absolute;right: 0;top:-10px;"
@@ -45,4 +46,54 @@
       [results]="data?.allData">
     </ngx-charts-line-chart>
   </div>
+</div>
+</div>
+<div *ngIf="data.graphType=='india'">
+  <div style="position: relative;">
+    <button mat-mini-fab
+      style="position: absolute;right: 0;top:-10px;"
+      (click)="onNoClick()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <div fxLayout="column">
+      <h1 fxFlex="10">India
+        <div style="font-size: 13px; line-height: 14px;"
+        fxLayout="column">
+        <div fxLayout
+          fxLayoutAlign="space-between">
+          <span fxFlex> Confirmed: <span style="font-weight: bold;">{{data.totalCases[0].confirmed}}</span></span>
+          <span fxFlex> {{confToday.name| slice:0:6}}: <span
+              style="font-weight: bold;">{{confToday.value}}</span></span>
+        </div>
+        <div fxLayout
+          fxLayoutAlign="space-between">
+          <span fxFlex> Deaths: <span style="color:red">{{data.totalCases[0].deaths}}</span></span>
+          <span fxFlex> {{diedToday.name| slice:0:6}}: <span style="color:red">{{diedToday.value}}</span></span>
+        </div>
+        <div fxLayout
+          fxLayoutAlign="space-between">
+          <span fxFlex> Recovered: <span style="color:green">{{data.totalCases[0].recovered}}</span></span>
+          <span fxFlex> {{recoveredToday.name | slice:0:6}}: <span
+              style="color:green">{{recoveredToday.value}}</span></span>
+        </div>
+      </div>  
+      </h1>
+      <ngx-charts-line-chart fxFlex="200px"
+        fxFlex.lt-md="150px"
+        fxFlexFill
+        [scheme]="colorScheme"
+        legend=true
+        legendPosition=below
+        legendPosition.gt-md=right
+        showXAxisLabel.gt-md=true
+        showYAxisLabel.gt-md=true
+        yAxis=true
+        xAxis=true
+        autoScale
+        animation=true
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [results]="data?.allData">
+      </ngx-charts-line-chart>
+    </div>
 </div>

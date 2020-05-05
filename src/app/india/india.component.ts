@@ -17,6 +17,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
   india = {};
   statewiseData: any;
   timeSeries: any;
+  indiaTimeSeries: any;
   dataInterval: any;
   stateDataInterval: any;
   distDataInterval: any;
@@ -51,6 +52,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
     this.httpClient.get('https://api.covid19india.org/data.json')
       .subscribe((a: any) => {
         this.statewiseData = a.statewise;
+        this.indiaTimeSeries = a.cases_time_series;
         this.india = _.filter(this.statewiseData, (b: any) => b.state === 'Total');
       });
 
@@ -80,6 +82,60 @@ export class IndiaComponent implements OnInit, OnDestroy {
     }
   }
 
+  createGraphIndia(){
+    this.message.spinner = true;
+    if (this.indiaTimeSeries){
+      const totalConfirmed = [];
+      const totalDeceased = [];
+      const totalRecovered = [];
+      this.indiaTimeSeries.map(a => {
+        const y = {
+          value:a.dailyconfirmed,
+          name: a.date
+        };
+        totalConfirmed.push(y);
+
+        const z = {
+          value: a.dailydeceased,
+          name: a.date
+        };
+
+        totalDeceased.push(z);
+
+        const d = {
+          value: a.dailyrecovered ,
+          name: a.date
+        };
+
+        totalRecovered.push(d);
+      });
+      const obj1 = [{
+        name: 'Confirmed',
+        series: totalConfirmed
+      }, {
+        name: 'Recovered',
+        series: totalRecovered
+      }, {
+        name: 'Deceased',
+        series: totalDeceased
+      }];
+      this.openDialog1(obj1);
+      this.message.spinner=false;
+    } 
+  }
+
+  openDialog1(obj): void {
+    const dialogRef = this.dialog.open(DialogOverviewDialogComponent, {
+      width: '100%',
+      height: '65%',
+      data: { allData: obj , graphType: 'india',totalCases: this.india }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+
+  }
 
   createGraphData(state) {
     this.message.spinner = true;
@@ -131,7 +187,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(DialogOverviewDialogComponent, {
       width: '100%',
       height: '65%',
-      data: { allData: obj, stateName: state.state, stateInfo: state }
+      data: { allData: obj, stateName: state.state, stateInfo: state, graphType: 'district'}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -144,7 +200,6 @@ export class IndiaComponent implements OnInit, OnDestroy {
     clearInterval(this.dataInterval);
     clearInterval(this.distDataInterval);
   }
-
 }
 
 @Component({
@@ -174,6 +229,7 @@ export class DialogOverviewDialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any) {
     const todayConf = this.data.allData.filter(a => a.name === 'Confirmed')[0];
     this.confToday = todayConf.series[todayConf.series.length - 1];
+    console.log(data.totalCases)
 
 
     const todayRec = this.data.allData.filter(a => a.name === 'Recovered')[0];
@@ -189,3 +245,4 @@ export class DialogOverviewDialogComponent {
   }
 
 }
+
