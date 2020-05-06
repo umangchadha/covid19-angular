@@ -155,7 +155,7 @@
           <mat-card *ngIf="districtDataOne && districtDataOne.index===i">
             <button mat-mini-fab
               class="district-close"
-              (click)="districtDataOne=null">
+              (click)="districtDataOne=[]">
               <mat-icon>close</mat-icon>
             </button>
             <div *ngFor="let district of districtDataOne">
