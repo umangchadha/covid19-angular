@@ -82,15 +82,27 @@ export class IndiaComponent implements OnInit, OnDestroy {
   }
 
   createDistrictData(state, i) {
-    if (this.districtDataOne.length <= 0) {
-      if (this.distDataAll) {
+    if (this.districtDataOne.state === state) {
+      this.districtDataOne = [];
+      return;
+    }
+    this.districtDataOne = [];
+
+    if (this.distDataAll) {
+      if (this.distDataAll.filter(a => a.state === state)[0]) {
         this.districtDataOne = this.distDataAll.filter(a => a.state === state)[0].districtData;
         this.districtDataOne = _.orderBy(this.districtDataOne, ['confirmed'], ['desc']);
         this.districtDataOne.index = i;
+        this.districtDataOne.state = state;
+      } else {
+        this.dialog.open(DialogOverviewDialogComponent, {
+          data: { message: 'District data not available!', type: 'normal' }
+        });
       }
-    } else {
-      this.districtDataOne = [];
     }
+
+
+
   }
 
   createIndiaGraph() {
@@ -183,7 +195,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
     const dialogRef = this.dialog.open(DialogOverviewDialogComponent, {
       width: '100%',
       height: '65%',
-      data: { allData: obj, stateName: state.state, stateInfo: state }
+      data: { allData: obj, stateName: state.state, stateInfo: state, type: 'graph' }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -224,15 +236,17 @@ export class DialogOverviewDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-    const todayConf = this.data.allData.filter(a => a.name === 'Confirmed')[0];
-    this.confToday = todayConf.series[todayConf.series.length - 1];
+    if (data.type === 'graph') {
+      const todayConf = this.data.allData.filter(a => a.name === 'Confirmed')[0];
+      this.confToday = todayConf.series[todayConf.series.length - 1];
 
 
-    const todayRec = this.data.allData.filter(a => a.name === 'Recovered')[0];
-    this.recoveredToday = todayRec.series[todayRec.series.length - 1];
+      const todayRec = this.data.allData.filter(a => a.name === 'Recovered')[0];
+      this.recoveredToday = todayRec.series[todayRec.series.length - 1];
 
-    const todayDie = this.data.allData.filter(a => a.name === 'Deceased')[0];
-    this.diedToday = todayDie.series[todayDie.series.length - 1];
+      const todayDie = this.data.allData.filter(a => a.name === 'Deceased')[0];
+      this.diedToday = todayDie.series[todayDie.series.length - 1];
+    }
   }
 
 

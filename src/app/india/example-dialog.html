@@ -1,4 +1,8 @@
-<div style="position: relative;">
+<div *ngIf="data.type==='normal'">
+  {{data.message}}
+</div>
+<div style="position: relative;"
+  *ngIf="data.type==='graph'">
   <button mat-mini-fab
     style="position: absolute;right: 0;top:-10px;"
     (click)="onNoClick()">
