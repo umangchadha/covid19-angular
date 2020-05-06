@@ -2,12 +2,11 @@
   fxLayout="column">
 
   <!-- Top links -->
-  <div style="margin-left: 10%;"
+  <div style="margin-left: 5%;"
     fxLayout
     xLayoutAlign="space-between end">
     <span fxLayout
       fxFlex="30"
-      fxLayoutGap="10px"
       fxLayoutAlign="start center">
       <a class="link_color"
         routerLink="/india"
@@ -24,7 +23,7 @@
     <!-- Time Stamp -->
     <span fxFlex="70"
       fxLayoutAlign="end"
-      class="world-timestamp">Last Updated : {{updateTimestamp}} : UTC</span>
+      class="world-timestamp">{{updateTimestamp}} : UTC</span>
   </div>
 
   <!-- Main content -->
@@ -33,7 +32,7 @@
     fxLayoutAlign="center center">
 
     <mat-card fxFlex.gt-sm="25"
-      fxFlex="43"
+      fxFlex="45"
       *ngFor="let country of masterData.countries_stat"
       fxShow="{{country.country_name.length>1}}">
 

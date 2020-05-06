@@ -22,6 +22,11 @@ export class IndiaComponent implements OnInit, OnDestroy {
   distDataInterval: any;
   distDataAll: any;
   districtDataOne: any = [];
+  indiaGraph: any = [];
+  indiaTimeSeries;
+  colorScheme = {
+    domain: ['#CFC0BB', '#5AA454', '#E44D25']
+  };
 
   constructor(private httpClient: HttpClient, public message: MessageService, public dialog: MatDialog) { }
 
@@ -51,11 +56,14 @@ export class IndiaComponent implements OnInit, OnDestroy {
     this.httpClient.get('https://api.covid19india.org/data.json')
       .subscribe((a: any) => {
         this.statewiseData = a.statewise;
+        this.indiaTimeSeries = a.cases_time_series;
         this.india = _.filter(this.statewiseData, (b: any) => b.state === 'Total');
+        this.createIndiaGraph();
       });
 
     this.message.spinner = false;
   }
+
 
   getStateData() {
     this.message.spinner = true;
@@ -65,6 +73,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
       });
     this.message.spinner = false;
   }
+
   getDisttData() {
     this.httpClient.get('https://api.covid19india.org/v2/state_district_wise.json')
       .subscribe((a: any) => {
@@ -73,14 +82,57 @@ export class IndiaComponent implements OnInit, OnDestroy {
   }
 
   createDistrictData(state, i) {
-    if (this.distDataAll) {
-      this.districtDataOne = this.distDataAll.filter(a => a.state === state)[0].districtData;
-      this.districtDataOne = _.orderBy(this.districtDataOne, ['confirmed'], ['desc']);
-      this.districtDataOne.index = i;
+    if (this.districtDataOne.length <= 0) {
+      if (this.distDataAll) {
+        this.districtDataOne = this.distDataAll.filter(a => a.state === state)[0].districtData;
+        this.districtDataOne = _.orderBy(this.districtDataOne, ['confirmed'], ['desc']);
+        this.districtDataOne.index = i;
+      }
+    } else {
+      this.districtDataOne = [];
     }
   }
 
+  createIndiaGraph() {
+    if (this.indiaTimeSeries) {
 
+      const totalConfirmed = [];
+      const totalDeceased = [];
+      const totalRecovered = [];
+      this.indiaTimeSeries.map(a => {
+        const y = {
+          value: a.dailyconfirmed,
+          name: a.date
+        };
+        totalConfirmed.push(y);
+
+        const z = {
+          value: a.dailydeceased,
+          name: a.date
+        };
+
+        totalDeceased.push(z);
+
+        const d = {
+          value: a.dailyrecovered,
+          name: a.date
+        };
+
+        totalRecovered.push(d);
+      });
+      this.indiaGraph = [{
+        name: 'Confirmed',
+        series: totalConfirmed
+      }, {
+        name: 'Recovered',
+        series: totalRecovered
+      }, {
+        name: 'Deceased',
+        series: totalDeceased
+      }];
+    }
+
+  }
   createGraphData(state) {
     this.message.spinner = true;
     if (this.timeSeries) {

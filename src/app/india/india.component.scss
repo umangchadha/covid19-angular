@@ -5,17 +5,18 @@
   padding: 50px 20px 20px;
   font-size: 16px;
 
+  .iconography {
+    margin-top: 20px
+  }
 
   .india {
-    height: 50px;
+    margin-top: 20px;
   }
 
-  .state-data {
-    text-align: right;
-  }
+
 
   .label-heading {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
   }
 
@@ -94,5 +95,4 @@ code {
 
 .graph-button {
   color: $font-color-wb;
-  height: 30px
 }

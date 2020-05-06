@@ -1,5 +1,11 @@
 @import '../../variables.scss';
 
+.quote {
+    position: absolute;
+    font-size: 30px;
+    font-family: cursive;
+    top: 20%;
+}
 
 .link_color {
     color: black;
