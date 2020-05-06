@@ -162,19 +162,40 @@
               <span class="district-data-container"
                 fxLayout="row"
                 fxLayoutAlign="space-between">
-                <span fxFlex
+                <span fxFlex="28"
                   class="district-label new-cases"> {{district.district}} </span>
-                <span fxFlex
+                <span fxFlex="68"
                   class="district-data"
-                  fxLayout="column">
-                  <span class="new-cases">
-                    Confirmed:{{district.confirmed}}
+                  fxLayout="row">
+                  <span class="new-cases"
+                    fxFlex
+                    fxLayout="column">
+                    <img src="../../assets/sick.png"
+                      alt="confirmed"
+                      width="30"
+                      matTooltip="confirmed">
+                    <span>All: {{district.confirmed}}</span>
+                    <span>New: {{district.delta.confirmed}}</span>
                   </span>
-                  <span class="new-cases warn">
-                    Deaths:{{district.deceased}}
+                  <span class="new-cases warn"
+                    fxFlex
+                    fxLayout="column">
+                    <img src="../../assets/dead.png"
+                      alt="deaths"
+                      width="30"
+                      matTooltip="deaths">
+                    <span>All: {{district.deceased}}</span>
+                    <span>New: {{district.delta.deceased}}</span>
                   </span>
-                  <span class="new-cases recovered">
-                    Recovered:{{district.recovered}}
+                  <span class="new-cases recovered"
+                    fxFlex
+                    fxLayout="column">
+                    <img src="../../assets/fit.png"
+                      alt="recovered"
+                      width="30"
+                      matTooltip="recovered">
+                    <span>All: {{district.recovered}}</span>
+                    <span>New: {{district.delta.recovered}}</span>
                   </span>
                 </span>
               </span>
