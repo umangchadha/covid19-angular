@@ -1,0 +1,32 @@
+.table-container {
+    height: 400px;
+    overflow: auto;
+    margin-top: 10px;
+}
+
+table {
+    width: 100%;
+}
+
+th.mat-header-cell,
+td.mat-cell {
+    text-align: center;
+    border: 1px solid #CCC;
+    padding: 0 !important;
+    border-left: 0;
+    border-top: 0;
+    max-width: 55px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.txt-center {
+    text-align: center;
+}
+
+@media screen and (min-width: 320px) and (max-width: 1800px) {
+    td.mat-cell {
+        max-width: 100% !important;
+    }
+}

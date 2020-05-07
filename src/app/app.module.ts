@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import { PromptComponent } from './prompt-component/prompt-component.component';
 import { PwaService } from './pwa.service';
 import { FaqComponentComponent } from './faq-component/faq-component.component';
+import { DistrictTableComponent } from './district-table/district-table.component';
 
 const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
 
@@ -30,7 +31,9 @@ const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt()
     HomeComponent,
     DialogOverviewDialogComponent,
     PromptComponent,
-    FaqComponentComponent
+    FaqComponentComponent,
+    DistrictTableComponent,
+    DistrictTableComponent
 
   ],
   imports: [

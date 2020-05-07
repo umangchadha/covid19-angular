@@ -213,7 +213,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
 
 @Component({
   selector: 'app-overview-example-dialog',
-  templateUrl: 'example-dialog.html',
+  templateUrl: 'graph-dialog.html',
 })
 export class DialogOverviewDialogComponent {
 
