@@ -114,20 +114,20 @@ export class IndiaComponent implements OnInit, OnDestroy {
       this.indiaTimeSeries.map(a => {
         const y = {
           value: a.dailyconfirmed,
-          name: a.date
+          name: a.date.substring(0,6)
         };
         totalConfirmed.push(y);
 
         const z = {
           value: a.dailydeceased,
-          name: a.date
+          name: a.date.substring(0,6)
         };
 
         totalDeceased.push(z);
 
         const d = {
           value: a.dailyrecovered,
-          name: a.date
+          name: a.date.substring(0,6)
         };
 
         totalRecovered.push(d);
