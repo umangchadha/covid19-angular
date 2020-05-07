@@ -108,12 +108,12 @@
             fxLayout
             fxLayoutAlign="space-between center">
             <span class="state"
-              fxFlex
+              fxFlex=80
               fxLayoutAlign="start">
               <span class="label-heading">{{state.state}}</span>
             </span>
             <button mat-button
-              fxFlex
+              fxFlex=20
               fxLayoutAlign="end"
               matTooltip="Open graph"
               class="graph-button"
@@ -157,8 +157,12 @@
                 <span class="recovered">New: {{state.deltarecovered}}</span>
               </span></span>
           </span>
+          <span fxflex
+          fxLayout
+          fxLayoutAlign="end"
+          >
           <button mat-button
-            fxFlex
+            fxFlex=120px
             fxLayoutAlign="end"
             color="accent"
             class="district-button"
@@ -168,7 +172,7 @@
             <mat-icon *ngIf="districtDataOne && districtDataOne.index!==i">add_circle_outline</mat-icon>
 
           </button>
-
+          </span>
           <app-district-table fxFlex
             *ngIf="districtDataOne && districtDataOne.index===i"
             class="fade-in"
