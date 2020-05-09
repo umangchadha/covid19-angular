@@ -31,8 +31,8 @@
     fxLayout="row wrap"
     fxLayoutAlign="center center">
 
-    <mat-card fxFlex.gt-sm="25"
-      fxFlex="45"
+    <mat-card fxFlex.lt-md="45"
+      fxFlex="30"
       *ngFor="let country of masterData.countries_stat"
       fxShow="{{country.country_name.length>1}}">
 
@@ -47,19 +47,23 @@
           <code>{{country.country_name | uppercase}} </code></div>
 
         <div class=" card-content"
-          fxLayout="column">
+          fxLayout="column"
+          fxLayoutGap="10px"
+          fxFlex>
 
           <div class="new-cases"
             fxLayout
-            fxFlex=100
+            fxFlex
             fxLayoutAlign="space-between center">
             <span>Cases :</span> {{country.cases}}</div>
           <div class="warn"
             fxLayout
+            fxFlex
             fxLayoutAlign="space-between center">
             <span> Deaths :</span> {{country.deaths}}</div>
           <div class="recovered"
             fxLayout
+            fxFlex
             fxLayoutAlign="space-between center">
             <span> Recovered :</span> {{country.total_recovered}}</div>
         </div>

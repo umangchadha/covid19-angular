@@ -158,20 +158,19 @@
               </span></span>
           </span>
           <span fxflex
-          fxLayout
-          fxLayoutAlign="center"
-          >
-          <button mat-button
-            fxFlex=120px
-            fxLayoutAlign="center"
-            color="accent"
-            class="district-button"
-            matTooltip="Open Districts Details"
-            (click)="createDistrictData(state.state,i)">Districts
-            <mat-icon *ngIf="districtDataOne && districtDataOne.index===i">remove_circle_outline</mat-icon>
-            <mat-icon *ngIf="districtDataOne && districtDataOne.index!==i">add_circle_outline</mat-icon>
+            fxLayout
+            fxLayoutAlign="center">
+            <button mat-button
+              fxFlex=120px
+              fxLayoutAlign="center"
+              color="accent"
+              class="district-button"
+              matTooltip="Open Districts Details"
+              (click)="createDistrictData(state.state,i)">Districts
+              <mat-icon *ngIf="districtDataOne && districtDataOne.index===i">remove_circle_outline</mat-icon>
+              <mat-icon *ngIf="districtDataOne && districtDataOne.index!==i">add_circle_outline</mat-icon>
 
-          </button>
+            </button>
           </span>
           <app-district-table fxFlex
             *ngIf="districtDataOne && districtDataOne.index===i"

@@ -21,13 +21,6 @@ body {
   position: static !important;
 }
 
-div[fxLayout="column"]>div[fxFlex],
-button[fxFlex],
-mat-card[fxFlex],
-span[fxFlex] {
-  flex: 1 0 auto !important;
-}
-
 
 
 

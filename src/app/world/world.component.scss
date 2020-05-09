@@ -61,3 +61,11 @@ code {
   padding: 5px;
   margin: 5px;
 }
+
+div[fxLayout="row wrap"]>mat-card[fxFlex],
+.mat-card>div[fxFlex],
+.mat-card>span[fxFlex],
+div[fxLayout="column"]>div[fxFlex],
+div[fxLayout="row"]>span[fxFlex] {
+  flex: 1 1 100% !important
+}
