@@ -25,7 +25,14 @@
       fxLayoutAlign="end"
       class="world-timestamp">{{updateTimestamp}} : UTC</span>
   </div>
-
+  <!-- seach card -->
+  <mat-card class="search" fxLayout="row" fxLayoutAlign="center center">
+    <mat-form-field class="world-full-width"  >
+      <mat-label>Search for Country</mat-label>
+      <input matInput placeholder="Enter Country Name" [(ngModel)]="filterName" name="filterName" (keyup)="getCountry($event.target.value)">
+    </mat-form-field>
+    <button mat-raised-button (click)="clear()" class="mat-card">Clear</button>
+  </mat-card>
   <!-- Main content -->
   <div fxFlex
     fxLayout="row wrap"
