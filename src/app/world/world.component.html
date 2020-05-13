@@ -26,13 +26,24 @@
       class="world-timestamp">{{updateTimestamp}} : UTC</span>
   </div>
   <!-- seach card -->
-  <mat-card class="search" fxLayout="row" fxLayoutAlign="center center">
-    <mat-form-field class="world-full-width"  >
-      <mat-label>Search for Country</mat-label>
-      <input matInput placeholder="Enter Country Name" [(ngModel)]="filterName" name="filterName" (keyup)="getCountry($event.target.value)">
-    </mat-form-field>
-    <button mat-raised-button (click)="clear()" class="mat-card">Clear</button>
-  </mat-card>
+  <div fxFlex
+    fxLayout="row"
+    fxLayoutAlign="space-around center">
+    <mat-card class="search"
+      fxFlex="90"
+      fxLayout>
+      <mat-form-field fxFlex="90">
+        <input matInput
+          placeholder="Search Country Name"
+          [(ngModel)]="filterName"
+          name="filterName"
+          (keyup)="getCountry($event.target.value)">
+      </mat-form-field>
+      <button mat-button
+        fxFlex="80px"
+        (click)="clear()">Clear</button>
+    </mat-card>
+  </div>
   <!-- Main content -->
   <div fxFlex
     fxLayout="row wrap"
