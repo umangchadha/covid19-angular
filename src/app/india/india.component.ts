@@ -4,7 +4,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dial
 
 import * as _ from 'lodash';
 import { MessageService } from '../message.service';
-import * as moment from 'moment';
+import * as D3 from 'd3';
 
 @Component({
   selector: 'app-india',
@@ -13,6 +13,7 @@ import * as moment from 'moment';
 })
 export class IndiaComponent implements OnInit, OnDestroy {
   title = 'covid';
+
   masterData: any = {};
   india = {};
   statewiseData: any;
@@ -27,6 +28,8 @@ export class IndiaComponent implements OnInit, OnDestroy {
   colorScheme = {
     domain: ['#CFC0BB', '#5AA454', '#E44D25']
   };
+
+  interpolation = D3.curveBasisOpen;
 
   constructor(private httpClient: HttpClient, public message: MessageService, public dialog: MatDialog) { }
 
@@ -114,20 +117,20 @@ export class IndiaComponent implements OnInit, OnDestroy {
       this.indiaTimeSeries.map(a => {
         const y = {
           value: a.dailyconfirmed,
-          name: a.date.substring(0,6)
+          name: a.date.substring(0, 6)
         };
         totalConfirmed.push(y);
 
         const z = {
           value: a.dailydeceased,
-          name: a.date.substring(0,6)
+          name: a.date.substring(0, 6)
         };
 
         totalDeceased.push(z);
 
         const d = {
           value: a.dailyrecovered,
-          name: a.date.substring(0,6)
+          name: a.date.substring(0, 6)
         };
 
         totalRecovered.push(d);
@@ -233,6 +236,8 @@ export class DialogOverviewDialogComponent {
   colorScheme = {
     domain: ['#CFC0BB', '#5AA454', '#E44D25']
   };
+
+  interpolation = D3.curveBasisOpen;
   constructor(
     public dialogRef: MatDialogRef<DialogOverviewDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
