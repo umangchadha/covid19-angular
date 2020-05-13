@@ -16,6 +16,8 @@ export class WorldComponent implements OnChanges, OnDestroy {
   masterData: any = {};
   show: any = false;
   dataInterval: any;
+  filterName: any;
+  searchedData: any;
   updateTimestamp: any;
   constructor(private httpClient: HttpClient, public messageService: MessageService) { this.getData(); }
 
@@ -39,12 +41,37 @@ export class WorldComponent implements OnChanges, OnDestroy {
       this.masterData = a;
       this.masterData.countries_stat = _.orderBy(this.masterData.countries_stat,
         [obj => parseFloat(obj.cases.replace(/,/g, ''))], ['desc']);
-
+      this.searchedData = _.cloneDeep(this.masterData.countries_stat);
       this.updateTimestamp = this.masterData.statistic_taken_at;
       this.messageService.spinner = false;
     });
 
   }
+
+
+  getCountry(country) {
+    if (country.length > 0) {
+      let ctr = country.toLowerCase();
+      ctr = ctr.trim();
+      this.masterData.countries_stat = this.searchedData;
+      this.masterData.countries_stat = this.masterData.countries_stat.filter(a => (a.country_name).toLowerCase().startsWith(ctr));
+    }
+    else {
+      this.messageService.spinner = true;
+      this.masterData.countries_stat = [];
+      setTimeout(() => {
+        this.masterData.countries_stat = this.searchedData;
+      }, 1000);
+      setTimeout(() => {
+        this.messageService.spinner = false;
+      }, 3000);
+    }
+  }
+
+  clear() {
+    this.getCountry('');
+  }
+
   classFinder(country) {
     const ctry = _.filter(COUNTRIES, a => a.name === country);
     if (ctry && ctry[0]) {
