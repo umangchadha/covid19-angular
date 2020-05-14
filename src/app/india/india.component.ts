@@ -1,6 +1,9 @@
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 
 import * as _ from 'lodash';
 import { MessageService } from '../message.service';
@@ -13,7 +16,8 @@ import * as D3 from 'd3';
 })
 export class IndiaComponent implements OnInit, OnDestroy {
   title = 'covid';
-
+  myControl = new FormControl();
+  filteredOptions: Observable<string[]>;
   masterData: any = {};
   india = {};
   statewiseData: any;
@@ -24,7 +28,12 @@ export class IndiaComponent implements OnInit, OnDestroy {
   distDataAll: any;
   districtDataOne: any = [];
   indiaGraph: any = [];
+  temp: any;
+  copyStatewise: any;
+  filterName: any;
+  options: any;
   indiaTimeSeries;
+  showMessage: boolean = false;
   colorScheme = {
     domain: ['#CFC0BB', '#5AA454', '#E44D25']
   };
@@ -70,11 +79,25 @@ export class IndiaComponent implements OnInit, OnDestroy {
       .subscribe((a: any) => {
         this.statewiseData = a.statewise;
         this.indiaTimeSeries = a.cases_time_series;
+        this.temp = this.statewiseData.filter( a => a.state !== 'Total');
+        this.options = this.temp.map(a => a.state);
+        this.copyStatewise = _.cloneDeep(this.statewiseData);
+
+        this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
         this.india = _.filter(this.statewiseData, (b: any) => b.state === 'Total');
         this.createIndiaGraph();
       });
 
     this.message.spinner = false;
+  }
+  private _filter(value: string) {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().startsWith(filterValue));
   }
 
 
@@ -92,6 +115,28 @@ export class IndiaComponent implements OnInit, OnDestroy {
       .subscribe((a: any) => {
         this.distDataAll = a;
       });
+  }
+
+  getState(state){
+    if ( state.length > 0){
+      let states = state.toLowerCase();
+      states = states.trim();
+      this.statewiseData = this.copyStatewise;
+      this.statewiseData = this.statewiseData.filter(a => (a.state).toLowerCase().startsWith(states));
+
+    }
+    else{
+      this.statewiseData = this.copyStatewise;
+    }
+  }
+  // clear search
+  clear(){
+    if (this.filterName){
+      this.filterName = "";
+      this.getState('');
+    }else{
+      this.filterName = "";
+    }
   }
 
   createDistrictData(state, i) {
