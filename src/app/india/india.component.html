@@ -93,6 +93,41 @@
           matTooltip="recovered">
       </span></span>
   </mat-card>
+
+  <!-- search div -->
+  <div fxFlex
+    fxLayout="row"
+    fxLayoutAlign="space-around center"
+    class="india"
+    >
+    <mat-card class="search"
+      fxFlex="100"
+      fxLayout>
+      <mat-form-field fxFlex="90">
+        <input matInput
+          placeholder="Search State"
+          [(ngModel)]="filterName"
+          name="filterName"
+          
+          [formControl]="myControl"
+           [matAutocomplete]="auto"
+          >
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="getState($event.option.value)">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+      </mat-form-field>
+      <button mat-button
+        fxFlex="80px"
+        (click)="clear()">Clear</button>
+    </mat-card>
+  </div>
+  <div *ngIf="showMessage" fxflex >
+    <mat-card fxLayout fxLayoutAlign="center" >
+      <h2 class="not-found warn">Not Found</h2>
+    </mat-card>
+  </div>
   <!-- main content -->
   <div fxLayout="column"
     fxLayoutGap="30px">
