@@ -1,7 +1,9 @@
 import { Component, OnInit, Inject, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-
+import {FormControl} from '@angular/forms';
+import {Observable} from 'rxjs';
+import {map, startWith} from 'rxjs/operators';
 import * as _ from 'lodash';
 import { MessageService } from '../message.service';
 import * as moment from 'moment';
@@ -13,17 +15,23 @@ import * as moment from 'moment';
 })
 export class IndiaComponent implements OnInit, OnDestroy {
   title = 'covid';
+  myControl = new FormControl();
   masterData: any = {};
+  filteredOptions: Observable<string[]>;
   india = {};
   statewiseData: any;
   timeSeries: any;
   dataInterval: any;
   stateDataInterval: any;
+  copyStatewise: any;
   distDataInterval: any;
   distDataAll: any;
   districtDataOne: any = [];
+  filterName: any;
   indiaGraph: any = [];
   indiaTimeSeries;
+  options: any;
+  showMessage: boolean = false;
   colorScheme = {
     domain: ['#CFC0BB', '#5AA454', '#E44D25']
   };
@@ -56,7 +64,14 @@ export class IndiaComponent implements OnInit, OnDestroy {
     this.httpClient.get('https://api.covid19india.org/data.json')
       .subscribe((a: any) => {
         this.statewiseData = a.statewise;
+        this.options=this.statewiseData.map(a => a.state);
+        this.copyStatewise = _.cloneDeep(this.statewiseData);
         this.indiaTimeSeries = a.cases_time_series;
+        this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
         this.india = _.filter(this.statewiseData, (b: any) => b.state === 'Total');
         this.createIndiaGraph();
       });
@@ -64,6 +79,11 @@ export class IndiaComponent implements OnInit, OnDestroy {
     this.message.spinner = false;
   }
 
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.options.filter(option => option.toLowerCase().startsWith(filterValue));
+  }
 
   getStateData() {
     this.message.spinner = true;
@@ -79,6 +99,42 @@ export class IndiaComponent implements OnInit, OnDestroy {
       .subscribe((a: any) => {
         this.distDataAll = a;
       });
+  }
+
+  getState(state){
+    if ( state.length > 0){
+      let states = state.toLowerCase();
+      states = states.trim();
+        this.statewiseData = this.copyStatewise;
+        this.statewiseData = this.statewiseData.filter(a => (a.state).toLowerCase().startsWith(states));
+          if ( this.statewiseData.length == 0) {
+            this.showMessage = true;
+          }else{
+
+            this.showMessage = false;
+          }   
+    }
+    else{
+      // this.message.spinner = true;
+      // this.statewiseData = [];
+      this.statewiseData = this.copyStatewise;
+      this.showMessage = false;
+      // setTimeout(()=>{
+      //   this.statewiseData = this.copyStatewise;
+      // },1000);
+      // setTimeout(() => {
+      //   this.message.spinner = false;
+      // }, 3000);
+
+    }
+  }
+  clear(){
+    if (this.filterName){
+      this.filterName = "";
+      this.getState('');
+    }else{
+      this.filterName = "";
+    }
   }
 
   createDistrictData(state, i) {

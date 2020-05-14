@@ -15,6 +15,10 @@
     margin-top: 20px;
   }
 
+  .india {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
 
 
   .label-heading {
@@ -166,4 +170,8 @@ button[fxFlex],
 mat-card[fxFlex],
 span[fxFlex] {
   flex: 1 0 auto !important;
+}
+
+.not-found{
+  padding: 20px;
 }

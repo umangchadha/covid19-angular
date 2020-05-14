@@ -69,7 +69,13 @@ export class WorldComponent implements OnChanges, OnDestroy {
   }
 
   clear() {
-    this.getCountry('');
+    if (this.filterName){
+      this.filterName = "";
+      this.getCountry('');
+    }else{
+      this.filterName = "";
+    }
+    
   }
 
   classFinder(country) {

@@ -1,15 +1,15 @@
 import { HttpClientModule } from '@angular/common/http';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, APP_INITIALIZER } from '@angular/core';
 
+import { NgModule, APP_INITIALIZER } from '@angular/core';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WorldComponent } from './world/world.component';
 import { IndiaComponent, DialogOverviewDialogComponent } from './india/india.component';
 import { HomeComponent } from './home/home.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { MessageService } from './message.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material-module';
@@ -43,6 +43,7 @@ const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt()
     HttpClientModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     NgxChartsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
