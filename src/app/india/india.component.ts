@@ -30,14 +30,24 @@ export class IndiaComponent implements OnInit, OnDestroy {
   };
 
   interpolation = D3.curveBasisOpen;
-
+  view: any = [];
   constructor(private httpClient: HttpClient, public message: MessageService, public dialog: MatDialog) { }
 
   ngOnInit() {
     // call all the APIs on load
+
     this.getData();
     this.getStateData();
     this.getDisttData();
+
+    // graph size
+    const smallScreen = window.innerWidth < 600;
+    if (smallScreen) {
+      this.view = [window.innerWidth - 50, window.innerWidth - 100];
+    } else {
+      this.view = [window.innerWidth - 100, 400];
+    }
+
 
     // set the timer for all the APIs
 
@@ -115,25 +125,29 @@ export class IndiaComponent implements OnInit, OnDestroy {
       const totalDeceased = [];
       const totalRecovered = [];
       this.indiaTimeSeries.map(a => {
-        const y = {
-          value: a.dailyconfirmed,
-          name: a.date.substring(0, 6)
-        };
-        totalConfirmed.push(y);
+        const mon = a.date.substring(3, 6); // only showing from month of March
+        if (!(mon === 'Jan' || mon === 'Feb')) {
+          const y = {
+            value: a.dailyconfirmed,
+            name: a.date.substring(0, 6)
+          };
+          totalConfirmed.push(y);
 
-        const z = {
-          value: a.dailydeceased,
-          name: a.date.substring(0, 6)
-        };
+          const z = {
+            value: a.dailydeceased,
+            name: a.date.substring(0, 6)
+          };
 
-        totalDeceased.push(z);
+          totalDeceased.push(z);
 
-        const d = {
-          value: a.dailyrecovered,
-          name: a.date.substring(0, 6)
-        };
+          const d = {
+            value: a.dailyrecovered,
+            name: a.date.substring(0, 6)
+          };
 
-        totalRecovered.push(d);
+          totalRecovered.push(d);
+
+        }
       });
       this.indiaGraph = [{
         name: 'Confirmed',
