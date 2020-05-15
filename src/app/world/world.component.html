@@ -1,7 +1,6 @@
-<div class="container"
+<!-- <div class="container"
   fxLayout="column">
 
-  <!-- Top links -->
   <div style="margin-left: 5%;"
     fxLayout
     xLayoutAlign="space-between end">
@@ -20,12 +19,10 @@
         <mat-icon>home</mat-icon>
       </a>
     </span>
-    <!-- Time Stamp -->
     <span fxFlex="70"
       fxLayoutAlign="end"
       class="world-timestamp">{{updateTimestamp}} : UTC</span>
   </div>
-  <!-- seach card -->
   <div fxFlex
     fxLayout="row"
     fxLayoutAlign="space-around center">
@@ -44,7 +41,6 @@
         (click)="clear(filterName)">Clear</button>
     </mat-card>
   </div>
-  <!-- Main content -->
   <div fxFlex
     fxLayout="row wrap"
     fxLayoutAlign="center center">
@@ -88,4 +84,24 @@
       </div>
     </mat-card>
   </div>
-</div>
+</div> -->
+
+
+
+<mat-card style=" margin: 200px auto; width: 50%;">
+  <div>
+    <a class="link_color"
+      routerLink="/india"
+      matTooltip="See India Stats"
+      routerLinkActive="active">India Stats
+    </a>
+    <a class="link_color"
+      routerLink="/"
+      routerLinkActive="active"
+      matTooltip="Home">
+      <mat-icon>home</mat-icon>
+    </a>
+  </div>
+ The data source we rely on for displaying World data is affected we are working with the company to correct that.
+ Apologies for the Inconvience. 
+</mat-card>
