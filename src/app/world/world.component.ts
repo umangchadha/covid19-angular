@@ -19,15 +19,15 @@ export class WorldComponent implements OnChanges, OnDestroy {
   filterName: any;
   searchedData: any;
   updateTimestamp: any;
-  constructor(private httpClient: HttpClient, public messageService: MessageService) { 
-    // this.getData();
-    
+  constructor(private httpClient: HttpClient, public messageService: MessageService) {
+    this.getData();
+
   }
 
   ngOnChanges() {
-    // this.dataInterval = setInterval(() => {
-    //   this.getData();
-    // }, 10000); // 10 sec interval
+    this.dataInterval = setInterval(() => {
+      this.getData();
+    }, 10000); // 10 sec interval
 
   }
 
@@ -50,7 +50,6 @@ export class WorldComponent implements OnChanges, OnDestroy {
     });
 
   }
-
 
   getCountry(country) {
     if (country.length > 0) {
@@ -84,6 +83,7 @@ export class WorldComponent implements OnChanges, OnDestroy {
       return 'flag-icon flag-icon-' + (ctry[0].code).toLowerCase();
     }
   }
+
   showHide(country) {
     this.show = country ? true : false;
   }
