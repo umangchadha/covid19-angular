@@ -17,7 +17,8 @@
         <mat-icon>home</mat-icon>
       </a>
     </span>
-    <div fxFlex=60> {{india[0]?.lastupdatedtime}} : IST </div>
+    <div fxFlex> {{india[0]?.lastupdatedtime}} : IST </div>
+    <div>New<sup>*</sup>(Cases as per last updated)</div>
   </div>
 
   <!-- India graph -->
@@ -26,6 +27,8 @@
     <div>
       <span class="flag-icon flag-icon-in"> </span>
       <code class="label-heading">INDIA</code>
+      <span  class="recovered"
+      fxLayoutAlign="center">Recovered:{{india[0]?.percentage}}%</span>
     </div>
     <div class="card-content india"
       fxLayout
@@ -146,18 +149,29 @@
             fxLayout
             fxLayoutAlign="space-between center">
             <span class="state"
-              fxFlex=60
+              fxFlex=33
               fxLayoutAlign="start">
               <span class="label-heading">{{state.state}}</span>
             </span>
+
+            <span class="recovered"
+            fxFlex=33
+            fxLayoutAlign="center">
+            <span class="">
+                Rec : {{state.percentage}} % </span>
+            </span>
+            
+            <span fxFlex=33
+            fxLayoutAlign="end">
             <button mat-button
-              fxFlex=120px
-              fxLayoutAlign="end"
-              matTooltip="Open graph"
-              class="graph-button"
-              (click)="createGraphData(state)">
-              <mat-icon>show_chart</mat-icon> Graph
-            </button>
+            matTooltip="Open graph"
+            class="graph-button"
+            (click)="createGraphData(state)">
+            <mat-icon>show_chart</mat-icon> Graph
+          </button>
+            </span>
+          
+            
           </span>
 
           <span class="state-data"

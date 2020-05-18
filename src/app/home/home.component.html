@@ -1,8 +1,20 @@
 <div fxLayout="column"
     fxFill
     fxLayoutAlign="center center">
-    <div class="quote">
-        " This too shall pass... "
+    <div class="margin-bottom" >
+        <mat-card fxFLex fxLayout="column">
+                <div fxLayout="row">
+                <span  class="time-stamp"
+                fxLayoutAlign="center">"LastUpdated : {{worldCases.statistic_taken_at}} UTC"</span>
+            </div>
+            <div class="new-cases">
+                <span>Total Cases:</span>
+                <code > {{worldCases.total_cases}}</code>
+            </div>
+
+            <div class="warn"><span>Total Deaths:</span><code> {{worldCases.total_deaths}}</code></div>
+            <div class="recovered"><span>Total Recovered:</span><code> {{worldCases.total_recovered}}</code></div>
+        </mat-card>
     </div>
 
     <h1 class="stats">COVID19 STATS</h1>

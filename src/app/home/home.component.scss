@@ -33,3 +33,25 @@ mat-card {
     position: fixed;
     padding-bottom: 10px;
 }
+.warn {
+    color: red;
+  }
+  
+  .new-cases {
+    font-weight: bold;
+  }
+  
+  .recovered {
+    color: green;
+  }
+
+  .margin-bottom{
+    margin-bottom: 10px;
+  }
+
+  .time-stamp{
+      color: #6199a7 !important;
+      font-size: 14px;
+      font-weight: bold;
+      padding-bottom: 4px;
+  }

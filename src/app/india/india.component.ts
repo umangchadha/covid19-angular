@@ -78,9 +78,10 @@ export class IndiaComponent implements OnInit, OnDestroy {
     this.httpClient.get('https://api.covid19india.org/data.json')
       .subscribe((a: any) => {
         this.statewiseData = a.statewise;
+        this.statewiseData.map(( a ) => a.percentage = ((a.recovered / a.confirmed ) * 100).toFixed(2) )
         this.indiaTimeSeries = a.cases_time_series;
         this.temp = this.statewiseData.filter( a => a.state !== 'Total');
-        this.options = this.temp.map(a => a.state);
+        this.options = this.temp.map( a => a.state);
         this.copyStatewise = _.cloneDeep(this.statewiseData);
 
         this.filteredOptions = this.myControl.valueChanges
