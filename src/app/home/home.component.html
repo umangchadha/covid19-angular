@@ -1,7 +1,7 @@
 <div fxLayout="column"
     fxFill
     fxLayoutAlign="center center">
-    <div class="margin-bottom" >
+    <!-- <div class="margin-bottom" >
         <mat-card fxFLex fxLayout="column">
                 <div fxLayout="row">
                 <span  class="time-stamp"
@@ -15,10 +15,25 @@
             <div class="warn"><span>Total Deaths:</span><code> {{worldCases.total_deaths}}</code></div>
             <div class="recovered"><span>Total Recovered:</span><code> {{worldCases.total_recovered}}</code></div>
         </mat-card>
-    </div>
+    </div> -->
 
     <h1 class="stats">COVID19 STATS</h1>
-
+   <div  fxLayout="row" style="padding: 10px;" >
+            <div *ngIf="worldCases">
+            <div fxLayout="column" style="padding: 10px;" >
+                <span>Cases:</span>
+                <code > {{worldCases.total_cases}}</code>
+            </div>
+            <div fxFlex fxLayout="column"  style="padding: 10px;">
+                <span>Deaths:</span>
+                <code> {{worldCases.total_deaths}}</code>
+            </div>
+            <div fxFlex fxLayout="column"  style="padding: 10px;">
+                <span>Recovered:</span>
+                <code> {{worldCases.total_recovered}}</code>
+            </div>
+        </div>
+        </div>
     <div fxLayout
         fxLayoutAlign="center"
         fxLayoutGap="20px">

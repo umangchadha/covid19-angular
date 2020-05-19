@@ -13,7 +13,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private httpClient: HttpClient) { 
     this.getData();
   }
-
+  
   ngOnInit(): void {
     this.dataInterval = setInterval(() => {
       this.getData();

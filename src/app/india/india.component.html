@@ -18,7 +18,7 @@
       </a>
     </span>
     <div fxFlex> {{india[0]?.lastupdatedtime}} : IST </div>
-    <div>New<sup>*</sup>(Cases as per last updated)</div>
+    
   </div>
 
   <!-- India graph -->
@@ -27,8 +27,7 @@
     <div>
       <span class="flag-icon flag-icon-in"> </span>
       <code class="label-heading">INDIA</code>
-      <span  class="recovered"
-      fxLayoutAlign="center">Recovered:{{india[0]?.percentage}}%</span>
+     
     </div>
     <div class="card-content india"
       fxLayout
@@ -36,17 +35,17 @@
       <div fxFlex=31
         class="new-cases">Conf
         <div>All: {{india[0]?.confirmed}}</div>
-        <div>New: {{india[0]?.deltaconfirmed}}</div>
+        <div>New<sup>*</sup>: {{india[0]?.deltaconfirmed}}</div>
       </div>
       <div fxFlex=31
         class="warn">Deaths
         <div>All: {{india[0]?.deaths}}</div>
-        <div>New: {{india[0]?.deltadeaths}}</div>
+        <div>New<sup>*</sup>: {{india[0]?.deltadeaths}}</div>
       </div>
       <div fxFlex=31
-        class="recovered">Recovered
+        class="recovered">Recovered<sup color-sup> &nbsp; {{india[0]?.percentage}}%</sup>
         <div>All: {{india[0]?.recovered}}</div>
-        <div>New: {{india[0]?.deltarecovered}}</div>
+        <div>New<sup>*</sup>: {{india[0]?.deltarecovered}}</div>
       </div>
     </div>
     <div>
@@ -63,6 +62,8 @@
         [results]="indiaGraph">
       </ngx-charts-line-chart>
     </div>
+    <span class="update">*As on {{india[0]?.lastupdatedtime}} : IST</span>
+
   </mat-card>
 
   <!-- icons -->
@@ -154,12 +155,7 @@
               <span class="label-heading">{{state.state}}</span>
             </span>
 
-            <span class="recovered"
-            fxFlex=33
-            fxLayoutAlign="center">
-            <span class="">
-                Rec : {{state.percentage}} % </span>
-            </span>
+            
             
             <span fxFlex=33
             fxLayoutAlign="end">
@@ -185,7 +181,7 @@
                 width="30"
                 matTooltip="confirmed">
               <span fxLayout="column"> <span class="new-cases">All: {{state.confirmed}}</span>
-                <span class="new-cases">New: {{state.deltaconfirmed}}</span>
+                <span class="new-cases">New<sup>*</sup>: {{state.deltaconfirmed}}</span>
               </span></span>
             <span fxLayout="column"
               fxFlex
@@ -195,7 +191,7 @@
                 matTooltip="deaths">
               <span fxLayout="column">
                 <span class="warn">All: {{state.deaths}}</span>
-                <span class="warn">New: {{state.deltadeaths}}</span>
+                <span class="warn">New<sup>*</sup>: {{state.deltadeaths}}</span>
               </span></span>
             <span fxLayout="column"
               fxFlex
@@ -205,8 +201,8 @@
                 width="30"
                 matTooltip="fit">
               <span fxLayout="column">
-                <span class="recovered">All: {{state.recovered}}</span>
-                <span class="recovered">New: {{state.deltarecovered}}</span>
+                <span class="recovered">All: {{state.recovered}}<sup class="color-sup">&nbsp;&nbsp;{{state.percentage}}%</sup></span>
+                <span class="recovered">New<sup>*</sup>: {{state.deltarecovered}}</span>
               </span></span>
           </span>
           <span fxflex
@@ -229,7 +225,7 @@
             class="fade-in"
             [data]="districtDataOne"></app-district-table>
 
-
+        <span class="update">*As on {{india[0]?.lastupdatedtime}} : IST</span>
         </mat-card>
 
 
