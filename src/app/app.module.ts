@@ -3,6 +3,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 
+import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { WorldComponent } from './world/world.component';
@@ -33,11 +34,11 @@ const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt()
     PromptComponent,
     FaqComponentComponent,
     DistrictTableComponent,
-    DistrictTableComponent
-
+    DistrictTableComponent,
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     FlexLayoutModule,
     HttpClientModule,
