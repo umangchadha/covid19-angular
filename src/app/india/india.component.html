@@ -32,19 +32,19 @@
     <div class="card-content india"
       fxLayout
       fxLayoutAlign="space-between center">
-      <div fxFlex=31
+      <div fxFlex=33
         class="new-cases">Conf
         <div>All: {{india[0]?.confirmed}}</div>
         <div>New<sup>*</sup>: {{india[0]?.deltaconfirmed}}</div>
       </div>
-      <div fxFlex=31
+      <div fxFlex=33
         class="warn">Deaths
         <div>All: {{india[0]?.deaths}}</div>
         <div>New<sup>*</sup>: {{india[0]?.deltadeaths}}</div>
       </div>
-      <div fxFlex=31
-        class="recovered">Recovered<sup class="color-sup"> &nbsp; {{india[0]?.percentage}}%</sup>
-        <div>All: {{india[0]?.recovered}}</div>
+      <div fxFlex=33
+        class="recovered">Recovered
+        <div>All: {{india[0]?.recovered}}<sup class="color-sup"> {{india[0]?.percentage}}%</sup></div>
         <div>New<sup>*</sup>: {{india[0]?.deltarecovered}}</div>
       </div>
     </div>
@@ -201,7 +201,7 @@
                 width="30"
                 matTooltip="fit">
               <span fxLayout="column">
-                <span class="recovered">All: {{state.recovered}}<sup class="color-sup">&nbsp;&nbsp;{{state.percentage}}%</sup></span>
+                <span class="recovered">All: {{state.recovered}}<sup class="color-sup"> {{state.percentage}}%</sup></span>
                 <span class="recovered">New<sup>*</sup>: {{state.deltarecovered}}</span>
               </span></span>
           </span>
