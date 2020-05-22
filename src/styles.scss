@@ -36,3 +36,11 @@ td.mat-cell:first-of-type {
   font-weight: bold !important;
   color: black !important
 }
+
+.cdk-overlay-pane.redzone {
+  border: 5px solid red;
+
+  * {
+    color: red;
+  }
+}

@@ -164,7 +164,6 @@ code {
 
 
 
-
 div[fxLayout="column"]>div[fxFlex],
 button[fxFlex],
 mat-card[fxFlex],
@@ -172,17 +171,17 @@ span[fxFlex] {
   flex: 1 0 auto !important;
 }
 
-.update{
+.update {
   font-size: 12px;
   font-weight: bold;
 }
 
-.world{
-  margin:10px !important;
+.world {
+  margin: 10px !important;
   padding: 10px;
 }
 
-.color-sup{
+.color-sup {
   color: #03bf03;
   font-size: 12px;
 }

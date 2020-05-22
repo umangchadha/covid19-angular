@@ -18,16 +18,18 @@
       </a>
     </span>
     <div fxFlex> {{india[0]?.lastupdatedtime}} : IST </div>
-    
+
   </div>
 
+  <button mat-button
+    (click)="getDistrictName()">Get Your Zone</button>
   <!-- India graph -->
   <mat-card class="india"
     fxLayout="column">
     <div>
       <span class="flag-icon flag-icon-in"> </span>
       <code class="label-heading">INDIA</code>
-     
+
     </div>
     <div class="card-content india"
       fxLayout
@@ -102,8 +104,7 @@
   <div fxFlex
     fxLayout="row"
     fxLayoutAlign="space-around center"
-    class="india"
-    >
+    class="india">
     <mat-card class="search"
       fxFlex="100"
       fxLayout>
@@ -112,23 +113,25 @@
           placeholder="Search State"
           [(ngModel)]="filterName"
           name="filterName"
-          
           [formControl]="myControl"
-           [matAutocomplete]="auto"
-          >
-          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="getState($event.option.value)">
-            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-              {{option}}
-            </mat-option>
-          </mat-autocomplete>
+          [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete"
+          (optionSelected)="getState($event.option.value)">
+          <mat-option *ngFor="let option of filteredOptions | async"
+            [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
       </mat-form-field>
       <button mat-button
         fxFlex="80px"
         (click)="clear()">Clear</button>
     </mat-card>
   </div>
-  <div *ngIf="showMessage" fxflex >
-    <mat-card fxLayout fxLayoutAlign="center" >
+  <div *ngIf="showMessage"
+    fxflex>
+    <mat-card fxLayout
+      fxLayoutAlign="center">
       <h2 class="not-found warn">Not Found</h2>
     </mat-card>
   </div>
@@ -155,19 +158,19 @@
               <span class="label-heading">{{state.state}}</span>
             </span>
 
-            
-            
+
+
             <span fxFlex=33
-            fxLayoutAlign="end">
-            <button mat-button
-            matTooltip="Open graph"
-            class="graph-button"
-            (click)="createGraphData(state)">
-            <mat-icon>show_chart</mat-icon> Graph
-          </button>
+              fxLayoutAlign="end">
+              <button mat-button
+                matTooltip="Open graph"
+                class="graph-button"
+                (click)="createGraphData(state)">
+                <mat-icon>show_chart</mat-icon> Graph
+              </button>
             </span>
-          
-            
+
+
           </span>
 
           <span class="state-data"
@@ -201,7 +204,8 @@
                 width="30"
                 matTooltip="fit">
               <span fxLayout="column">
-                <span class="recovered">All: {{state.recovered}}<sup class="color-sup"> {{state.percentage}}%</sup></span>
+                <span class="recovered">All: {{state.recovered}}<sup class="color-sup">
+                    {{state.percentage}}%</sup></span>
                 <span class="recovered">New<sup>*</sup>: {{state.deltarecovered}}</span>
               </span></span>
           </span>
@@ -225,7 +229,7 @@
             class="fade-in"
             [data]="districtDataOne"></app-district-table>
 
-        <span class="update">*As on {{india[0]?.lastupdatedtime}} : IST</span>
+          <span class="update">*As on {{india[0]?.lastupdatedtime}} : IST</span>
         </mat-card>
 
 
