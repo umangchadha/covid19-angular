@@ -82,6 +82,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
     this.httpClient.get("assets/district-name.json").subscribe(res =>{
         this.optionsDistrict = res;
         this.optionsDistrict = this.optionsDistrict.map( a => a.name);
+        this.optionsDistrict.sort();
         this.optionsDistrictData = this.myControl.valueChanges
         .pipe(
           startWith(''),
@@ -200,9 +201,6 @@ export class IndiaComponent implements OnInit, OnDestroy {
         });
       }
     }
-
-
-
   }
 
   createIndiaGraph() {
