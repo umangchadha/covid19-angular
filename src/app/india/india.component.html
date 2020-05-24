@@ -20,6 +20,35 @@
     <div fxFlex> {{india[0]?.lastupdatedtime}} : IST </div>
 
   </div>
+  <div fxFlex
+    fxLayout="row"
+    fxLayoutAlign="space-around center"
+    class="india">
+    <mat-card class="search"
+      fxFlex="100"
+      fxLayout="column">
+      <mat-card-title fxLayoutAlign="center">See Your Zone</mat-card-title>
+      <div fxLayout="row">
+        <mat-form-field fxFlex="90">
+          <input matInput
+            placeholder="Search District"
+            [(ngModel)]="filterName1"
+            name="filterName1"
+            [formControl]="myControl"
+            [matAutocomplete]="auto">
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="getDistrictName($event.option.value)">
+            <mat-option *ngFor="let option of optionsDistrictData | async"
+              [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+        <button mat-button
+          fxFlex="80px"
+          (click)="clear()">Clear</button>
+      </div>
+    </mat-card>
+  </div>
 
   <!-- <button mat-button
     (click)="getDistrictName()">Get Your Zone</button> -->

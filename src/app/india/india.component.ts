@@ -14,10 +14,12 @@ import * as D3 from 'd3';
   templateUrl: './india.component.html',
   styleUrls: ['./india.component.scss']
 })
+
 export class IndiaComponent implements OnInit, OnDestroy {
   title = 'covid';
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
+  optionsDistrictData: Observable<string[]>;
   masterData: any = {};
   india = {};
   statewiseData: any;
@@ -31,7 +33,9 @@ export class IndiaComponent implements OnInit, OnDestroy {
   temp: any;
   copyStatewise: any;
   filterName: any;
+  filterName1: any;
   options: any;
+  optionsDistrict: any;
   indiaTimeSeries;
   showMessage = false;
   districtName;
@@ -45,7 +49,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // call all the APIs on load
-
+    this.getZones();
     this.getData();
     this.getStateData();
     this.getDisttData();
@@ -74,38 +78,39 @@ export class IndiaComponent implements OnInit, OnDestroy {
     }, 6000000); // 1 min
   }
 
-  getDistrictName() {
-    this.message.getPosition().then(pos => {
-      this.message.spinner = true;
-      this.httpClient.get('https://us1.locationiq.com/v1/reverse.php?key=816e6219b8e226&lat='
-        + pos.lat + '&lon=' + pos.lng + '&format=json')
-        .subscribe((a: any) => {
-          this.districtName = a.address.state_district;
+  getZones(){
+    this.httpClient.get("assets/district-name.json").subscribe(res =>{
+        this.optionsDistrict = res;
+        this.optionsDistrict = this.optionsDistrict.map( a => a.name);
+        this.optionsDistrictData = this.myControl.valueChanges
+        .pipe(
+          startWith(''),
+          map(value => this._filter1(value))
+        );
+    });
+  }
 
-          if (a.address && a.address.state_district) {
+  private _filter1(value: string) {
+    const filterValue = value.toLowerCase();
+
+    return this.optionsDistrict.filter(option => option.toLowerCase().startsWith(filterValue));
+  }
+
+  getDistrictName(name) {
+      if (name) {
             this.message.spinner = false;
             this.httpClient.get('https://api.covid19india.org/zones.json').
               subscribe((b: any) => {
-                const zoneColor = b.zones.filter(c => c.district.toLowerCase() === a.address.state_district.toLowerCase())[0].zone;
+                const zoneColor = b.zones.filter(c => c.district.toLowerCase() === name.toLowerCase())[0].zone;
+
                 this.dialog.open(DialogOverviewDialogComponent, {
-                  data: { message: 'Your district ' + a.address.state_district + ' is in ' + zoneColor + ' zone.', type: 'normal' },
+                  data: { message: 'Your district ' + name + ' is in ' + zoneColor + ' zone.', type: 'normal' },
                   panelClass: zoneColor.toLowerCase() + 'zone',
 
                 });
               });
-
-
-          }
-          else {
-            this.message.spinner = false;
-            this.dialog.open(DialogOverviewDialogComponent, {
-              data: { message: 'This functionality is not valid in your country', type: 'normal' }
-            });
-          }
-        });
-    });
-
-  }
+         }
+}
 
 
   getData() {
@@ -113,6 +118,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
     this.httpClient.get('https://api.covid19india.org/data.json')
       .subscribe((a: any) => {
         this.statewiseData = a.statewise;
+        console.log(this.statewiseData)
         this.statewiseData.map((a) => a.percentage = ((a.recovered / a.confirmed) * 100).toFixed(0))
         this.indiaTimeSeries = a.cases_time_series;
         this.temp = this.statewiseData.filter(a => a.state !== 'Total');

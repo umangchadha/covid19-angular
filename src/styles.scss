@@ -43,4 +43,22 @@ td.mat-cell:first-of-type {
   * {
     color: red;
   }
+
+}
+
+.cdk-overlay-pane.greenzone {
+  border: 5px solid green;
+
+  * {
+    color: green
+  }
+}
+
+
+.cdk-overlay-pane.orangezone {
+  border: 5px solid orange;
+
+  * {
+    color: orange
+  }
 }
