@@ -209,15 +209,6 @@ export class IndiaComponent implements OnInit, OnDestroy {
         this.districtDataOne = _.orderBy(this.districtDataOne, ['confirmed'], ['desc']);
         this.districtDataOne.index = i;
         this.districtDataOne.state = state;
-        console.log(this.districtZones.zones.filter(b=> {if(b.district){
-        }}))
-        this.districtDataOne.map(a => a.zone = this.districtZones.zones.filter(b=> {if ( a.district == b.district){
-          a.notes=b.zone;
-        }}));
-
-        
-
-        // console.log(this.districtZones.zones)
       } else {
         this.dialog.open(DialogOverviewDialogComponent, {
           data: { message: 'District data not available!', type: 'normal' }

@@ -10,9 +10,9 @@
                 [attr.rowspan]="2"
                 [ngStyle]="{'display': 'none'}"> </th>
             <td mat-cell
-                *matCellDef="let element" > {{element.district}} <div  [ngClass]= "{'Orange':color[element.district]=== 'Orange',
+                *matCellDef="let element" > <div  [ngClass]= "{'Orange':color[element.district]=== 'Orange',
                 'Green': color[element.district]=== 'Green',
-                'Red':color[element.district]=== 'Red'}"></div></td>
+                'Red':color[element.district]=== 'Red'}"></div>{{element.district}} </td>
         </ng-container>
 
         <!-- Confirmed Column -->
