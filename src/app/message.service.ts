@@ -6,7 +6,9 @@ import { Injectable } from '@angular/core';
 export class MessageService {
   spinner: any = false;
   ios;
-  constructor() { }
+  data: any;
+  constructor() { 
+  }
 
   getPosition(): Promise<any> {
     return new Promise((resolve, reject) => {
