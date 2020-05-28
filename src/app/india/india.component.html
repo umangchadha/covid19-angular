@@ -34,12 +34,12 @@
             placeholder="Search District"
             [(ngModel)]="filterName1"
             name="filterName1"
-            [formControl]="myControl"
-            [matAutocomplete]="auto">
-          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="getDistrictName($event.option.value)">
-            <mat-option *ngFor="let option of optionsDistrictData | async"
-              [value]="option">
-              {{option}}
+            [formControl]="myControl1"
+            [matAutocomplete]="autos">
+          <mat-autocomplete #autos="matAutocomplete" (optionSelected)="getDistrictName($event.option.value)">
+            <mat-option *ngFor="let options of optionsDistrictData | async"
+              [value]="options">
+              {{options}}
             </mat-option>
           </mat-autocomplete>
         </mat-form-field>

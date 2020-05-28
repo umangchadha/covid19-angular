@@ -18,6 +18,7 @@ import * as D3 from 'd3';
 export class IndiaComponent implements OnInit, OnDestroy {
   title = 'covid';
   myControl = new FormControl();
+  myControl1 = new FormControl();
   filteredOptions: Observable<string[]>;
   optionsDistrictData: Observable<string[]>;
   masterData: any = {};
@@ -92,7 +93,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
         this.optionsDistrict = res;
         this.optionsDistrict = this.optionsDistrict.map( a => a.name);
         this.optionsDistrict.sort();
-        this.optionsDistrictData = this.myControl.valueChanges
+        this.optionsDistrictData = this.myControl1.valueChanges
         .pipe(
           startWith(''),
           map(value => this._filter1(value))
