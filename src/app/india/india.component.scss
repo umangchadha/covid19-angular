@@ -11,9 +11,6 @@
     margin-top: 20px
   }
 
-  .india {
-    margin-top: 20px;
-  }
 
   .india {
     margin-top: 20px;
@@ -65,16 +62,29 @@
 
 .warn {
   color: red;
+  border-bottom: 1px solid #949494;
+  padding: 10px;
+
 }
 
 .new-cases {
   font-weight: bold;
+  border-bottom: 1px solid #949494;
+  padding: 10px;
+
+
 }
 
 .recovered {
   color: green;
-}
+  border-bottom: 1px solid #949494;
+  padding: 10px;
 
+
+}
+.margin1{
+  padding: 10px;
+}
 code {
   font-weight: bold;
   font-size: large;
@@ -184,4 +194,30 @@ span[fxFlex] {
 .color-sup {
   color: #03bf03;
   font-size: 12px;
+}
+
+.active-home{
+  color: #5555ab;
+  padding: 10px;
+  border-bottom: 1px solid #949494;
+}
+
+.supsub {
+  display: inline-block;
+}
+
+.supsub sup,
+.supsub sub {
+  position: relative;
+  display: block;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.supsub sub {
+  top: .8em;
+}
+
+.margin{
+  padding: 20px;
 }

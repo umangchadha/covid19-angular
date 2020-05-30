@@ -135,6 +135,9 @@ export class IndiaComponent implements OnInit, OnDestroy {
         this.statewiseData = a.statewise;
         console.log(this.statewiseData)
         this.statewiseData.map((a) => a.percentage = ((a.recovered / a.confirmed) * 100).toFixed(0))
+        this.statewiseData.map((a) => a.death_percentage = ((a.deaths / a.confirmed) * 100).toFixed(0))
+
+        this.statewiseData.map((a) => a.active = parseInt(a.confirmed)-(parseInt(a.recovered)+parseInt(a.deaths)));
         this.indiaTimeSeries = a.cases_time_series;
         this.temp = this.statewiseData.filter(a => a.state !== 'Total');
         this.options = this.temp.map(a => a.state);
