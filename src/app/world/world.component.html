@@ -59,28 +59,24 @@
            fxLayoutAlign="start center">
            <span [className]="classFinder(country?.country_name)"></span>
            <code>{{country.country_name | uppercase}} </code></div>
+        <div class="card-content">
+         <div class="new-cases">
+          Cases: <span style="float: right">{{country.cases}}</span>
+          </div>
+          
 
-         <div class=" card-content"
-           fxLayout="column"
-           fxLayoutGap="10px"
-           fxFlex>
-
-           <div class="new-cases"
-             fxLayout
-             fxFlex
-             fxLayoutAlign="space-between center">
-             <span>Cases :</span> {{country.cases}}</div>
-           <div class="warn"
-             fxLayout
-             fxFlex
-             fxLayoutAlign="space-between center">
-             <span> Deaths :</span> {{country.deaths}}</div>
-           <div class="recovered"
-             fxLayout
-             fxFlex
-             fxLayoutAlign="space-between center">
-             <span> Recovered :</span> {{country.total_recovered}}</div>
-         </div>
+          <div class="warn">
+            Deaths: <span style="float: right">{{country.deaths}}<sup> {{country.death_percentage}}%</sup></span>
+            </div>
+           
+            <div class="recovered">
+              Recovered: <span style="float: right">{{country.total_recovered}}<sup> {{country.percentage}}%</sup></span>
+            </div>
+            
+            <div class="active-home">
+              Active: <span style="float: right">{{country.active_cases}}</span>
+            </div>
+      </div>
        </div>
      </mat-card>
    </div>

@@ -13,32 +13,30 @@ mat-card {
 }
 
 .card-content {
-  position: relative;
   font-size: 16px;
-
-  &.india {
-    height: 70px;
-
-    * {
-      font-weight: bold;
-    }
-  }
 }
 
-
-
-
+.active-home{
+  color: #5555ab;
+  margin-bottom: 10px;
+}
 
 .warn {
   color: red;
+  margin-bottom: 10px;
+
 }
 
 .new-cases {
   font-weight: bold;
+  margin-bottom: 10px;
+
 }
 
 .recovered {
   color: green;
+  margin-bottom: 10px;
+
 }
 
 

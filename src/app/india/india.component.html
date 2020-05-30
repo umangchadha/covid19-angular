@@ -10,7 +10,7 @@
         routerLink="/world"
         matTooltip="See World Stats"
         routerLinkActive="active">World Stats</a>
-      <a class="link_color"
+      <a 
         routerLink="/"
         routerLinkActive="active"
         matTooltip="home">
@@ -55,30 +55,27 @@
   <!-- India graph -->
   <mat-card class="india"
     fxLayout="column">
-    <div>
+    <div class="india">
       <span class="flag-icon flag-icon-in"> </span>
       <code class="label-heading">INDIA</code>
 
     </div>
-    <div class="card-content india"
-      fxLayout
-      fxLayoutAlign="space-between center">
-      <div fxFlex=33
-        class="new-cases">Conf
-        <div>All: {{india[0]?.confirmed}}</div>
-        <div>New<sup>*</sup>: {{india[0]?.deltaconfirmed}}</div>
+    
+
+    <div class="new-cases margin1">
+      Cases: <span style="float: right">{{india[0]?.confirmed}}<span class="supsub"><sub>+{{india[0]?.deltaconfirmed}}</sub></span></span>
       </div>
-      <div fxFlex=33
-        class="warn">Deaths
-        <div>All: {{india[0]?.deaths}}</div>
-        <div>New<sup>*</sup>: {{india[0]?.deltadeaths}}</div>
-      </div>
-      <div fxFlex=33
-        class="recovered">Recovered
-        <div>All: {{india[0]?.recovered}}<sup class="color-sup"> {{india[0]?.percentage}}%</sup></div>
-        <div>New<sup>*</sup>: {{india[0]?.deltarecovered}}</div>
-      </div>
-    </div>
+     
+      <div class="warn margin1">
+        Deaths: <span style="float: right">{{india[0]?.deaths}}<span class="supsub"><sup>{{india[0]?.death_percentage}}%</sup><sub>+{{india[0]?.deltadeaths}}</sub></span></span>
+        </div>
+        <div class="recovered margin1">
+          Recovered: <span style="float: right">{{india[0]?.recovered}}<span class="supsub"><sup>{{india[0]?.percentage}}%</sup><sub>+{{india[0]?.deltarecovered}}</sub></span></span>
+          </div>
+        
+          <div class="active-home margin1">
+            Active: <span style="float: right">{{india[0]?.active}}<span class="supsub"><sup></sup><sub></sub></span></span>
+            </div>
     <div>
       <ngx-charts-line-chart [scheme]="colorScheme"
         [view]="view"
@@ -93,41 +90,10 @@
         [results]="indiaGraph">
       </ngx-charts-line-chart>
     </div>
-    <span class="update">*As on {{india[0]?.lastupdatedtime}} : IST</span>
+    <span class="update">+ As per {{india[0]?.lastupdatedtime}} : IST</span>
 
   </mat-card>
 
-  <!-- icons -->
-  <mat-card class="iconography">
-    <mat-card-subtitle style="margin-bottom: 5px;">Icons Used</mat-card-subtitle>
-    <span fxLayout
-      fxLayoutAlign="center center"><span fxLayout="column"
-        fxFlex
-        fxLayoutAlign="center center">
-        Confirmed
-        <img src="../../assets/sick.png"
-          alt="confirmed"
-          width="30"
-          matTooltip="confirmed">
-      </span>
-      <span fxLayout="column"
-        fxLayoutAlign="center center"
-        fxFlex>
-        Deaths
-        <img src="../../assets/dead.png"
-          alt="deaths"
-          width="30"
-          matTooltip="deaths"></span>
-      <span fxLayout="column"
-        fxLayoutAlign="center center"
-        fxFlex>
-        Recovered
-        <img src="../../assets/fit.png"
-          alt="recovered"
-          width="30"
-          matTooltip="recovered">
-      </span></span>
-  </mat-card>
 
   <!-- search div -->
   <div fxFlex
@@ -202,42 +168,22 @@
 
           </span>
 
-          <span class="state-data"
-            fxFlex
-            fxLayout>
-            <span fxLayout="column"
-              fxFlex
-              fxLayoutAlign="start center">
-              <img src="../../assets/sick.png"
-                alt="confirmed"
-                width="30"
-                matTooltip="confirmed">
-              <span fxLayout="column"> <span class="new-cases">All: {{state.confirmed}}</span>
-                <span class="new-cases">New<sup>*</sup>: {{state.deltaconfirmed}}</span>
-              </span></span>
-            <span fxLayout="column"
-              fxFlex
-              fxLayoutAlign="start center"> <img src="../../assets/dead.png"
-                alt="deaths"
-                width="30"
-                matTooltip="deaths">
-              <span fxLayout="column">
-                <span class="warn">All: {{state.deaths}}</span>
-                <span class="warn">New<sup>*</sup>: {{state.deltadeaths}}</span>
-              </span></span>
-            <span fxLayout="column"
-              fxFlex
-              fxLayoutAlign="start center">
-              <img src="../../assets/fit.png"
-                alt="deaths"
-                width="30"
-                matTooltip="fit">
-              <span fxLayout="column">
-                <span class="recovered">All: {{state.recovered}}<sup class="color-sup">
-                    {{state.percentage}}%</sup></span>
-                <span class="recovered">New<sup>*</sup>: {{state.deltarecovered}}</span>
-              </span></span>
-          </span>
+          
+          <div class="state-data">
+          <div class="new-cases margin">
+            Cases: <span style="float: right">{{state.confirmed}}<span class="supsub"><sub>+{{india[0]?.deltaconfirmed}}</sub></span></span>
+            </div>
+            
+            <div class="warn margin">
+              Deaths: <span style="float: right">{{state.deaths}}<span class="supsub"><sup>{{state.death_percentage}}%</sup><sub>+{{state.deltadeaths}}</sub></span></span>
+              </div>
+              <div class="recovered margin">
+                Recovered: <span style="float: right">{{state.recovered}}<span class="supsub"><sup>{{state.percentage}}%</sup><sub>+{{state.deltarecovered}}</sub></span></span>
+                </div>
+                <div class="active-home margin">
+                  Active: <span style="float: right">{{state.active}}</span>
+                  </div>
+              </div>
           <span fxflex
             fxLayout
             fxLayoutAlign="center">
@@ -258,7 +204,7 @@
             class="fade-in"
             [data]="districtDataOne"></app-district-table>
 
-          <span class="update">*As on {{india[0]?.lastupdatedtime}} : IST</span>
+          <span class="update">+ As per {{india[0]?.lastupdatedtime}} : IST</span>
         </mat-card>
 
 
