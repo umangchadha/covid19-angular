@@ -42,6 +42,23 @@
      </mat-card>
    </div>
    <div fxFlex
+     fxLayout="row"
+     fxLayoutAlign="space-around center">
+     <mat-card class="search"
+       fxFlex="90"
+       fxLayout>
+       <mat-form-field fxFlex="100">
+          <mat-label> Sort by:  </mat-label>
+          <mat-select   (selectionChange)="sortData($event.value)">
+              <mat-option *ngFor="let ops of selectOptions" [value]="ops.value" >
+                {{ops.viewValue}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+     </mat-card>
+   </div>
+    
+   <div fxFlex
      fxLayout="row wrap"
      fxLayoutAlign="center center">
 

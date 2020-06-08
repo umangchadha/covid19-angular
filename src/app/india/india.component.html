@@ -130,6 +130,22 @@
       <h2 class="not-found warn">Not Found</h2>
     </mat-card>
   </div>
+
+  <!-- filter div -->
+
+  <div class="filter" fxLayoutGap="30px" fxFlex>
+    <mat-card  >
+      <mat-form-field fxFlex="100">
+          <mat-label> Sort by:  </mat-label>
+          <mat-select   (selectionChange)="sortData($event.value)">
+              <mat-option *ngFor="let ops of selectOptions" [value]="ops.value" >
+                {{ops.viewValue}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+    </mat-card>
+  </div>
   <!-- main content -->
   <div fxLayout="column"
     fxLayoutGap="30px">
