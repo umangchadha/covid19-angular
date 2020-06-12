@@ -20,7 +20,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
   deaths = false;
   selectOptions: any = [
     {value: 'nofilter', viewValue: 'No Filter'},
-    {value: 'recovered', viewValue: 'Recovered'},
+    {value: 'recovered', viewValue: 'Recovered%'},
     {value: 'confirmed', viewValue: 'Confirmed'},
     {value: 'deaths', viewValue: 'Deaths'},
     {value: 'active', viewValue: 'Active'},
@@ -183,7 +183,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
   }
   else if(event == "recovered"){
       this.statewiseData.sort(function (a, b) {
-          return b.recovered - a.recovered;
+          return b.percentage - a.percentage;
     })
   }  else if(event == "active"){
     this.statewiseData.sort(function (a, b) {
