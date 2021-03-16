@@ -272,8 +272,9 @@ export class IndiaComponent implements OnInit, OnDestroy {
       const totalDeceased = [];
       const totalRecovered = [];
       this.indiaTimeSeries.map(a => {
-        const mon = a.date.substring(3, 6); // only showing from month of March
-        if (!(mon === 'Jan' || mon === 'Feb')) {
+        const year = a.dateymd.substring(0, 4)
+        const current_year = (new Date()).getFullYear();  
+        if ( year == current_year) {
           const y = {
             value: a.dailyconfirmed,
             name: a.date.substring(0, 6)
