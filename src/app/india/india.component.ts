@@ -317,13 +317,17 @@ export class IndiaComponent implements OnInit, OnDestroy {
       const confirmedArr = [];
       const deceasedArr = [];
       this.timeSeries.states_daily.filter(a => {
+      const year = a.date.substring(7,9)
+       if(year == 21){ 
         if (a.status === 'Recovered') {
+          console.log(a.date)
           const x = {
             value: a[state.statecode.toLowerCase()],
             name: a.date
           };
           recoverArr.push(x);
         }
+        
         if (a.status === 'Confirmed') {
           const x = {
             value: a[state.statecode.toLowerCase()],
@@ -338,6 +342,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
           };
           deceasedArr.push(x);
         }
+      }
       });
       const obj = [{
         name: 'Confirmed',
