@@ -10,6 +10,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class HomeComponent implements OnInit, OnDestroy {
   worldCases: any;
   dataInterval: any;
+  masterData: any;
   constructor(private httpClient: HttpClient) { 
     this.getData();
   }
@@ -17,19 +18,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.dataInterval = setInterval(() => {
       this.getData();
-    }, 6000);
+    }, 6000000); // changed to 1 min
   }
 
   getData() {
     const httpOptions = {
       headers: new HttpHeaders({
-        'x-rapidapi-host': 'coronavirus-monitor.p.rapidapi.com',
-		    'x-rapidapi-key': '077bb06f59msh45677e8ff01aa8fp1f1d42jsn992088ab485b'
+        'x-rapidapi-host': 'corona-virus-world-and-india-data.p.rapidapi.com',
+        'x-rapidapi-key': '077bb06f59msh45677e8ff01aa8fp1f1d42jsn992088ab485b'
       })
     };
 
-    this.httpClient.get('https://coronavirus-monitor.p.rapidapi.com/coronavirus/worldstat.php', httpOptions).subscribe(a => {
-        this.worldCases = a;
+    this.httpClient.get('https://corona-virus-world-and-india-data.p.rapidapi.com/api', httpOptions).subscribe((a: any) => {
+        this.worldCases = a.world_total;
     });
 
   }
