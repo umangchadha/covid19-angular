@@ -66,7 +66,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
     this.getData();
     this.getStateData();
     this.getDisttData();
-    this.httpClient.get('https://api.covid19india.org/zones.json').
+    this.httpClient.get('https://data.covid19india.org/zones.json').
               subscribe((b: any) => {
                 this.districtZones =  b;
                 let arr: any;
@@ -141,7 +141,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
 
   getData() {
     this.message.spinner = true;
-    this.httpClient.get('https://api.covid19india.org/data.json')
+    this.httpClient.get('https://data.covid19india.org/data.json')
       .subscribe((a: any) => {
         this.statewiseData = a.statewise;
         this.statewiseData.map((a) => a.percentage = ((a.recovered / a.confirmed) * 100).toFixed(0))
@@ -207,7 +207,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
 
   getStateData() {
     this.message.spinner = true;
-    this.httpClient.get('https://api.covid19india.org/states_daily.json')
+    this.httpClient.get('https://data.covid19india.org/states_daily.json')
       .subscribe((a: any) => {
         this.timeSeries = a;
       });
@@ -215,7 +215,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
   }
 
   getDisttData() {
-    this.httpClient.get('https://api.covid19india.org/v2/state_district_wise.json')
+    this.httpClient.get('https://data.covid19india.org/v2/state_district_wise.json')
       .subscribe((a: any) => {
         this.distDataAll = a;
       });
@@ -273,7 +273,7 @@ export class IndiaComponent implements OnInit, OnDestroy {
       const totalRecovered = [];
       this.indiaTimeSeries.map(a => {
         const year = a.dateymd.substring(0, 4)
-        const current_year = (new Date()).getFullYear();  
+        const current_year = "2021";  
         if ( year == current_year) {
           const y = {
             value: a.dailyconfirmed,

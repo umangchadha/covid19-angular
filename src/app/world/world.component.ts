@@ -43,12 +43,12 @@ export class WorldComponent implements OnChanges, OnDestroy {
     this.messageService.spinner = true;
     const httpOptions = {
       headers: new HttpHeaders({
-        'x-rapidapi-host': 'coronavirus-monitor.p.rapidapi.com',
-        'x-rapidapi-key': '37844fb50cmshf7fa91e30393b02p144a6fjsnd76da63b95dd'
+        'x-rapidapi-host': 'corona-virus-world-and-india-data.p.rapidapi.com',
+        'x-rapidapi-key': '077bb06f59msh45677e8ff01aa8fp1f1d42jsn992088ab485b'
       })
     };
 
-    this.httpClient.get('https://coronavirus-monitor.p.rapidapi.com/coronavirus/cases_by_country.php', httpOptions).subscribe(a => {
+    this.httpClient.get('https://corona-virus-world-and-india-data.p.rapidapi.com/api', httpOptions).subscribe(a => {
       this.masterData = a;
       this.masterData.countries_stat = _.orderBy(this.masterData.countries_stat,
         [obj => parseFloat(obj.cases.replace(/,/g, ''))], ['desc']);
